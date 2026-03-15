@@ -16,7 +16,7 @@
     "@clawmarket/contracts": "workspace:*",
     "@clawmarket/db": "workspace:*",
     "@hono/zod-validator": "^0.5.0",
-    "drizzle-orm": "^0.39.0",
+    "drizzle-orm": "^0.45.1",
     "hono": "^4.7.0",
     "zod": "^3.24.0"
   },
