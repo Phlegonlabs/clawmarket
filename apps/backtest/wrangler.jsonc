@@ -1,0 +1,16 @@
+{
+  "name": "clawmarket-backtest",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-03-14",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // Workers AI binding
+  "ai": {
+    "binding": "AI"
+  },
+
+  // Environment variables
+  "vars": {
+    "ENVIRONMENT": "development"
+  }
+}
