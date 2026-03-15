@@ -35,6 +35,7 @@
     "harness:guardian": "bun .harness/validate.ts --guardian",
     "harness:resume": "bun .harness/resume.ts",
     "harness:orchestrate": "bun .harness/orchestrator.ts",
+    "harness:merge-milestone": "bun .harness/merge-milestone.ts",
     "harness:compact": "bun .harness/compact.ts",
     "harness:compact:milestone": "bun .harness/compact.ts --milestone",
     "harness:compact:status": "bun .harness/compact.ts --status",

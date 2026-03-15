@@ -119,13 +119,14 @@
 
 ### Milestone 4: Frontend — 全新 UI
 
-#### F011: Design System + shadcn/ui Setup
+#### F011: Design System + Astro + shadcn/ui Setup
 
-- **Description**: 建立基于 shadcn/ui + Radix UI 的设计系统
+- **Description**: 建立 Astro 项目 + shadcn/ui + Radix UI 的设计系统（React Islands 架构）
 - **Acceptance criteria**:
+  - [ ] Astro 项目初始化 + `@astrojs/react` + `@astrojs/cloudflare` 适配器
   - [ ] shadcn/ui 初始化并配置 Tailwind v4
   - [ ] 基础组件：Button、Card、Dialog、Table、Badge、Input、Select
-  - [ ] 全局 layout：顶部导航、页面容器、footer
+  - [ ] 全局 Astro layout（`layouts/BaseLayout.astro`）：顶部导航、页面容器、footer
   - [ ] 设计 token（颜色、间距、字体）定义
   - [ ] 响应式断点（desktop / tablet / mobile）
 - **Priority**: P0
@@ -133,20 +134,21 @@
 
 #### F012: Home Page
 
-- **Description**: 全新首页设计
+- **Description**: 全新首页设计（Astro 页面，静态内容 + Featured Strategies React Island）
 - **Acceptance criteria**:
-  - [ ] Hero section：产品定位 + 核心价值
-  - [ ] 能力展示：策略市场、AI 回测、一次购买、agent-first
-  - [ ] Featured strategies（从 API 拉取）
-  - [ ] Quickstart / 接入指引
+  - [ ] `pages/index.astro` — Hero section：产品定位 + 核心价值
+  - [ ] 能力展示：策略市场、AI 回测、一次购买、agent-first（Astro 组件，零 JS）
+  - [ ] Featured strategies（React Island `client:load`，从 API 拉取）
+  - [ ] Quickstart / 接入指引（Astro 组件，零 JS）
   - [ ] 响应式布局
 - **Priority**: P0
 - **Dependencies**: F011
 
 #### F013: Strategy Catalog Page
 
-- **Description**: 策略目录页，支持筛选和排序
+- **Description**: 策略目录页，支持筛选和排序（React Island — 高交互性页面）
 - **Acceptance criteria**:
+  - [ ] `pages/strategies/index.astro` 外壳 + `StrategyCatalog` React Island (`client:load`)
   - [ ] 从 `GET /api/strategies` 拉取数据
   - [ ] 筛选：family、chain、execution mode、price range、tags
   - [ ] 排序：price、newest、popularity
@@ -157,11 +159,11 @@
 
 #### F014: Strategy Detail Page
 
-- **Description**: 策略详情页，含回测展示
+- **Description**: 策略详情页，含回测展示（Astro 页面 + React Islands）
 - **Acceptance criteria**:
-  - [ ] 策略概要：title、publisher、family、execution mode、price、chains
-  - [ ] Rule breakdown 可视化
-  - [ ] AI 回测结果展示（从 backtest API 拉取）
+  - [ ] `pages/strategies/[slug].astro` — 策略概要：title、publisher、family、execution mode、price、chains（Astro 静态渲染）
+  - [ ] Rule breakdown 可视化（Astro 组件，零 JS）
+  - [ ] AI 回测结果展示（`BacktestPanel` React Island `client:visible`，从 backtest API 拉取）
   - [ ] 购买引导（指向 OpenClaw 操作指引）
   - [ ] 响应式布局
 - **Priority**: P0
@@ -169,27 +171,29 @@
 
 #### F015: OpenClaw Docs Page
 
-- **Description**: OpenClaw 集成文档页
+- **Description**: OpenClaw 集成文档页（纯 Astro 页面 — 静态内容，零客户端 JS）
 - **Acceptance criteria**:
+  - [ ] `pages/docs/openclaw.astro` — 纯 Astro 渲染
   - [ ] Buyer 操作步骤
   - [ ] Publisher 操作步骤
   - [ ] API reference 概要
   - [ ] 费用结构（90/10 split）说明
-  - [ ] Sticky 侧边导航（Mobile: dropdown/sheet）
+  - [ ] Sticky 侧边导航（Mobile: dropdown/sheet — Astro 组件 + CSS-only 交互）
 - **Priority**: P1
 - **Dependencies**: F011
 
 #### F018: Status Page
 
-- **Description**: API 和服务健康状态页面
+- **Description**: API 和服务健康状态页面（Astro 页面 + React Island for 自动轮询）
 - **Acceptance criteria**:
+  - [ ] `pages/status.astro` 外壳 + `StatusDashboard` React Island (`client:load`)
   - [ ] 总体状态指示（Operational / Degraded / Down）
   - [ ] 各服务状态表格：Main API、Backtest Worker、Workers AI、D1、OKX OnchainOS、X Layer
   - [ ] 响应时间显示（mono font）
   - [ ] 30 天 uptime 百分比
   - [ ] 24h 响应时间 sparkline 图表
   - [ ] 最近事件日志
-  - [ ] 自动轮询刷新（30s）
+  - [ ] 自动轮询刷新（30s）— React Island 内处理
   - [ ] 响应式布局
 - **Priority**: P1
 - **Dependencies**: F011, F004

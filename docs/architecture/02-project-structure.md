@@ -7,7 +7,26 @@ clawmarket/
 ├── README.md
 ├── agents/
 ├── apps/
-│   ├── web/
+│   ├── web/                       ← Astro + React Islands (Cloudflare Pages)
+│   │   ├── astro.config.mjs
+│   │   ├── src/
+│   │   │   ├── layouts/           ← Astro layouts (BaseLayout.astro)
+│   │   │   ├── pages/             ← Astro pages (*.astro) — file-based routing
+│   │   │   │   ├── index.astro
+│   │   │   │   ├── strategies/
+│   │   │   │   │   ├── index.astro
+│   │   │   │   │   └── [slug].astro
+│   │   │   │   ├── docs/
+│   │   │   │   │   └── openclaw.astro
+│   │   │   │   └── status.astro
+│   │   │   ├── components/
+│   │   │   │   ├── astro/         ← Pure Astro components (zero JS)
+│   │   │   │   ├── islands/       ← React Islands (interactive, client:*)
+│   │   │   │   └── ui/            ← shadcn/ui components (used by islands)
+│   │   │   ├── hooks/             ← React hooks (used by islands)
+│   │   │   ├── lib/               ← Shared utilities
+│   │   │   └── styles/            ← Global CSS + Tailwind
+│   │   └── public/
 ├── packages/
 │   └── shared/
 ├── docs/

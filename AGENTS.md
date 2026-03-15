@@ -10,7 +10,7 @@ ClawMarket is an agent-first strategy marketplace on OKX X Layer using x402 paym
 
 - **Runtime**: Bun + Cloudflare Workers
 - **API**: Hono
-- **Frontend**: React 19 + React Router 7 + Vite 7
+- **Frontend**: Astro + React 19 (Islands) + @astrojs/cloudflare
 - **Styling**: Tailwind CSS v4
 - **Components**: shadcn/ui + Radix UI + CVA + Lucide
 - **Database**: Cloudflare D1 (SQLite via Drizzle ORM)
@@ -25,7 +25,7 @@ ClawMarket is an agent-first strategy marketplace on OKX X Layer using x402 paym
 ```
 apps/api         → Hono API (Cloudflare Workers)
 apps/backtest    → Backtest microservice (Cloudflare Workers)
-apps/web         → React frontend (Cloudflare Pages)
+apps/web         → Astro + React Islands frontend (Cloudflare Pages)
 packages/contracts → Shared Zod schemas & types
 packages/db      → Drizzle ORM schema for D1
 ```
@@ -71,14 +71,17 @@ apps/api ──Service Binding──→ apps/backtest
 - Validate all inputs with Zod schemas from `packages/contracts`
 - Use `Env` type from `types/bindings.ts` for Cloudflare bindings
 
-### Frontend (apps/web)
+### Frontend (apps/web) — Astro + React Islands
 
-- shadcn/ui components live in `src/components/ui/`
-- Feature components live in `src/components/features/`
-- Pages are thin — delegate to feature components
-- No API calls in components — use hooks in `src/hooks/`
+- **Astro pages** (`src/pages/*.astro`) handle routing and static shell
+- **Astro components** (`src/components/astro/`) for static UI — zero client JS
+- **React Islands** (`src/components/islands/`) for interactive sections — use `client:load` or `client:visible`
+- **shadcn/ui components** (`src/components/ui/`) used inside React Islands only
+- Pages are thin Astro shells — delegate interactive parts to React Islands
+- No API calls in components — use React hooks in `src/hooks/` (inside islands)
 - Use Tailwind v4 utility classes, no inline styles
 - Design tokens: zinc dark palette + emerald accent
+- Default to Astro component (zero JS); only use React Island when interactivity is required
 
 ### Database (packages/db)
 
@@ -130,7 +133,7 @@ main                          ← Always deployable
 ```bash
 bun install                  # Install all dependencies
 bun run dev:api              # Start API dev server (wrangler)
-bun run dev:web              # Start web dev server (Vite)
+bun run dev:web              # Start web dev server (Astro)
 bun run build                # Build all workspaces
 bun run typecheck            # Type check all workspaces
 bun run lint                 # Lint all workspaces

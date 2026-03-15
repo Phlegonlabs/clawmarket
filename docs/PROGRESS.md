@@ -1,7 +1,7 @@
 # Progress — ClawMarket
 
-> **Last updated**: 2026-03-14
-> **Phase**: PRD_ARCH (PRD & Architecture review)
+> **Last updated**: 2026-03-15
+> **Phase**: SCAFFOLD (Scaffold generation & verification)
 
 ---
 
@@ -48,12 +48,12 @@
 
 | Task | Feature | Description | Status |
 |------|---------|-------------|--------|
-| T011 | F011 | Design system + shadcn/ui setup | NOT_STARTED |
-| T012 | F012 | Home page | NOT_STARTED |
-| T013 | F013 | Strategy catalog page | NOT_STARTED |
-| T014 | F014 | Strategy detail page | NOT_STARTED |
-| T015 | F015 | OpenClaw docs page | NOT_STARTED |
-| T018 | F018 | Status page | NOT_STARTED |
+| T011 | F011 | Design system + Astro + shadcn/ui setup | NOT_STARTED |
+| T012 | F012 | Home page (Astro + React Island) | NOT_STARTED |
+| T013 | F013 | Strategy catalog page (React Island) | NOT_STARTED |
+| T014 | F014 | Strategy detail page (Astro + React Islands) | NOT_STARTED |
+| T015 | F015 | OpenClaw docs page (pure Astro) | NOT_STARTED |
+| T018 | F018 | Status page (Astro + React Island) | NOT_STARTED |
 
 ### M5: OpenClaw Skill + Polish
 - **Status**: NOT_STARTED

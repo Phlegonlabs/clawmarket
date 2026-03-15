@@ -64,7 +64,7 @@
 
 - **Package Manager**: Bun
 - **Language**: TypeScript 5.9+ (strict)
-- **Frontend**: React 19 + React Router 7 + Vite 7
+- **Frontend**: Astro + React 19 (Islands) + @astrojs/cloudflare
 - **Styling**: Tailwind CSS v4
 - **Components**: shadcn/ui + Radix UI + CVA + Lucide
 - **Backend**: Hono on Cloudflare Workers
