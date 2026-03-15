@@ -1,141 +1,26 @@
-# Progress — ClawMarket
+# PROGRESS.md — ClawMarket
 
-> **Last updated**: 2026-03-15
-> **Phase**: COMPLETE (all milestones done)
-
----
-
-## Milestones
-
-### M1: Foundation — 项目基础 + 后端移植
-- **Status**: DONE
-- **Features**: F001-F004
-- **Branch**: milestone/m1-foundation (merged to main)
-
-| Task | Feature | Description | Status |
-|------|---------|-------------|--------|
-| T001 | F001 | Monorepo scaffold | DONE |
-| T002 | F002 | Shared contracts (Zod schemas) | DONE |
-| T003 | F003 | D1 database schema (Drizzle) | DONE |
-| T004 | F004 | API core (Hono + D1 binding) | DONE |
-
-### M2: Core API — 策略 CRUD + 支付流程
-- **Status**: DONE
-- **Features**: F005-F008
-- **Branch**: milestone/m2-core-api (merged to main)
-
-| Task | Feature | Description | Status |
-|------|---------|-------------|--------|
-| T005 | F005 | Strategy CRUD API + display format | DONE |
-| T006 | F006 | x402 purchase flow | DONE |
-| T007 | F007 | Entitlement & revenue ledger | DONE |
-| T008 | F008 | Wrapped OKX execution | DONE |
-
-### M3: AI Features — 推荐 + 回测
-- **Status**: DONE
-- **Features**: F009-F010
-- **Branch**: milestone/m3-ai-features (merged to main)
-
-| Task | Feature | Description | Status |
-|------|---------|-------------|--------|
-| T009 | F009 | AI strategy recommendation (Workers AI) | DONE |
-| T010 | F010 | Backtest Worker microservice (Workers AI + OKX) | DONE |
-
-### M4: Frontend — 全新 UI
-- **Status**: DONE
-- **Features**: F011-F015, F018
-- **Branch**: milestone/m4-frontend (merged to main)
-
-| Task | Feature | Description | Status |
-|------|---------|-------------|--------|
-| T011 | F011 | Design system + Astro + shadcn/ui setup | DONE |
-| T012 | F012 | Home page (Astro + React Island) | DONE |
-| T013 | F013 | Strategy catalog page (React Island) | DONE |
-| T014 | F014 | Strategy detail page (Astro + React Islands) | DONE |
-| T015 | F015 | OpenClaw docs page (pure Astro) | DONE |
-| T018 | F018 | Status page (Astro + React Island) | DONE |
-
-### M5: OpenClaw Skill + Polish
-- **Status**: DONE
-- **Features**: F016-F017
-- **Branch**: milestone/m5-polish (merged to main)
-
-| Task | Feature | Description | Status |
-|------|---------|-------------|--------|
-| T016 | F016 | OpenClaw skill manifest | DONE |
-| T017 | F017 | LLM index files | DONE |
-
-### M6: Marketplace Intelligence
-- **Status**: DONE
-- **Features**: V1E-F005, V1E-F001, V1E-F004, V1E-F003
-- **Branch**: milestone/m6-marketplace-intelligence (merged to main)
-
-| Task | Feature | Description | Status |
-|------|---------|-------------|--------|
-| T019 | V1E-F005 | Workers AI model configuration upgrade (GLM-4.7-Flash / Nemotron-3) | DONE |
-| T020 | V1E-F001 | Auto-backtest + performance badge service | DONE |
-| T021 | V1E-F004 | Strategy comparison API (2-4 side-by-side + AI summary) | DONE |
-| T022 | V1E-F003 | Publisher analytics API | DONE |
-
-### M7: Leaderboard & Social Proof
-- **Status**: DONE
-- **Features**: V2-F008
-- **Branch**: milestone/m7-leaderboard (merged to main)
-
-| Task | Feature | Description | Status |
-|------|---------|-------------|--------|
-| T023 | V2-F008a | Leaderboard data aggregation service + Cron Trigger | DONE |
-| T024 | V2-F008b | Leaderboard API endpoints + trending algorithm | DONE |
-| T025 | V2-F008c | Leaderboard page (Astro + React Island) + dynamic featured | DONE |
-
-### M8: x402 V2 Payment Evolution
-- **Status**: DONE
-- **Features**: V2-F006
-- **Branch**: milestone/m8-x402-v2 (merged to main)
-
-| Task | Feature | Description | Status |
-|------|---------|-------------|--------|
-| T026 | V2-F006a | x402 V2 SDK integration + wallet session management | DONE |
-| T027 | V2-F006b | Credit balance service + top-up flow | DONE |
-| T028 | V2-F006c | Stripe fiat on-ramp (optional, non-blocking) | DONE |
-
-### M9: Trust & Identity Layer
-- **Status**: DONE
-- **Features**: V2-F004
-- **Branch**: milestone/m9-trust-identity (merged to main)
-
-| Task | Feature | Description | Status |
-|------|---------|-------------|--------|
-| T029 | V2-F004a | ERC-8004 Identity Registry integration | DONE |
-| T030 | V2-F004b | ERC-8004 Reputation Registry + score aggregation | DONE |
-| T031 | V2-F004c | Publisher verification API + agent identity endpoint | DONE |
-
-### M10: Strategy Bundles
-- **Status**: DONE
-- **Features**: V2-F005
-- **Branch**: milestone/m10-strategy-bundles (merged to main)
-
-| Task | Feature | Description | Status |
-|------|---------|-------------|--------|
-| T032 | V2-F005a | Bundle schema + CRUD API | DONE |
-| T033 | V2-F005b | Bundle x402 payment + multi-entitlement minting | DONE |
-| T034 | V2-F005c | Portfolio-level combined backtest | DONE |
-| T035 | V2-F005d | Bundle catalog + detail page (Astro + React Island) | DONE |
+> **For the next session's Agent**: Read this index first, then read `docs/progress/`, AGENTS.md and LEARNING.md, then pick up from the Current Task.
 
 ---
 
-## Summary
+## Current Summary
 
-| Milestone | Tasks | Completed | Progress |
-|-----------|-------|-----------|----------|
-| M1: Foundation | 4 | 4 | 100% |
-| M2: Core API | 4 | 4 | 100% |
-| M3: AI Features | 2 | 2 | 100% |
-| M4: Frontend | 6 | 6 | 100% |
-| M5: Polish | 2 | 2 | 100% |
-| M6: Marketplace Intelligence | 4 | 4 | 100% |
-| M7: Leaderboard & Social Proof | 3 | 3 | 100% |
-| M8: x402 V2 Payment Evolution | 3 | 3 | 100% |
-| M9: Trust & Identity Layer | 3 | 3 | 100% |
-| M10: Strategy Bundles | 4 | 4 | 100% |
-| **Total** | **35** | **35** | **100%** |
+**Current Phase**: EXECUTING
+**Current Milestone**: M6 — Marketplace Intelligence
+**Current Worktree**: `./`
+**Current Task**: T019 — Workers AI model configuration upgrade (BLOCKED)
+**Overall Progress**: [█████████░] 30/35 Tasks (86%)
+**Last Updated**: 2026-03-15T12:30:22.935Z
+
+---
+
+## Module Index
+
+1. [01 Summary](./progress/01-summary.md)
+2. [02 Current State](./progress/02-current-state.md)
+3. [03 Backlog](./progress/03-backlog.md)
+4. [04 Blockers](./progress/04-blockers.md)
+5. [05 Worktrees](./progress/05-worktrees.md)
+6. [06 Next Session](./progress/06-next-session.md)
+7. [07 Activity](./progress/07-activity.md)

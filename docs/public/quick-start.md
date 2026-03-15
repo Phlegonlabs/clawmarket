@@ -3,14 +3,14 @@
 
 ```bash
 bun install
+bun run typecheck:root
+bun run test
+bun run dev:api
+bun run dev:web
 bun .harness/state.ts --show
-bun harness:advance
-bun harness:sync-backlog
-bun harness:env
-bun harness:validate --phase EXECUTING
-bun harness:audit
+bun harness:sync-docs
 ```
 
-After these steps, continue from `docs/PROGRESS.md`, `docs/progress/`, and `.harness/state.json`.
-`.env.local` is already scaffolded for local use, but framework-specific variables should be added only when the relevant milestone task introduces that framework.
+Use `docs/PROGRESS.md`, `docs/progress/`, and `.harness/state.json` for execution recovery.
+`.env.local` is scaffolded for local use; populate it from `.env.example` before integrating external services.
 <!-- END:HARNESS:PUBLIC:QUICKSTART -->

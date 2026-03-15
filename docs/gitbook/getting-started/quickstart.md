@@ -2,12 +2,19 @@
 
 ```bash
 bun install
-bun harness:advance
-bun harness:env
-bun harness:validate --phase EXECUTING
-bun harness:resume
+bun run typecheck:root
+bun run test
+bun run dev:api
+bun run dev:web
 ```
 
-> `bun harness:validate` is a full final validation and is not recommended as a substitute for the phase gate during initialization.
+## State And Recovery
 
-After completing the steps above, you can pick up subsequent tasks from `docs/PROGRESS.md`, `docs/progress/`, and `.harness/state.json`.
+- Read `docs/PROGRESS.md` first for the current execution snapshot
+- Use `.harness/state.json` as the machine-readable source of truth
+- Run `bun .harness/state.ts --show` to inspect the current harness state
+
+## Notes
+
+- The web app expects `PUBLIC_API_URL` when pointing at a non-default API origin
+- Workspace-wide `bun run typecheck` is still red because of Drizzle version drift between `apps/api` and `packages/db`

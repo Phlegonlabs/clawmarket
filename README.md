@@ -1,7 +1,14 @@
 <!-- BEGIN:HARNESS:README -->
 # ClawMarket
 
-ClawMarket prepared with the Harness Engineering and Orchestrator workflow.
+Agent-first strategy marketplace on OKX X Layer with x402 payments, Cloudflare Workers, and Astro + React Islands.
+
+## Repository Status
+
+- Phase: `EXECUTING`
+- Progress: 30/35 tasks marked DONE across 10 milestones
+- Status note: Execution snapshot: 30/35 tasks marked DONE, 5 blocked, 0 still active or pending.
+- Source of truth: [docs/PROGRESS.md](docs/PROGRESS.md) + [.harness/state.json](.harness/state.json)
 
 ## Start Here
 
@@ -17,22 +24,20 @@ ClawMarket prepared with the Harness Engineering and Orchestrator workflow.
 - AI workflow: [AGENTS.md](AGENTS.md)
 - GitBook: [docs/gitbook/README.md](docs/gitbook/README.md)
 
-## Workflow
+## Common Commands
 
 ```bash
 bun install
-bun harness:advance
-bun harness:sync-backlog
-bun harness:add-surface --type agent
+bun run typecheck:root
+bun run typecheck
+bun run test
+bun run dev:api
+bun run dev:web
 bun harness:sync-docs
-bun harness:audit
 ```
 
-This workspace is monorepo-first. Keep adding new surfaces inside the same repository as later milestones.
-Do not bootstrap product frameworks such as Next.js, Tauri, or provider SDK stacks during scaffold setup. Introduce them only inside milestone tasks.
-If product scope changes after execution begins, update the PRD first and run `bun harness:sync-backlog` before implementing the new work.
+## Workspaces
 
 - `apps/`: current surfaces -> api, backtest, web
-- `packages/shared/`: shared contracts and utilities
-- `packages/shared/api/`: agent-facing API wrappers
+- `packages/`: contracts, db, shared
 <!-- END:HARNESS:README -->

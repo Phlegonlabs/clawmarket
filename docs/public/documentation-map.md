@@ -7,4 +7,5 @@
 - `docs/ai/`: AI execution specifications
 - `docs/gitbook/`: Public-facing documentation and changelog
 - `docs/adr/`: Architecture decision records
+- `.harness/state.json`: machine-readable execution state
 <!-- END:HARNESS:PUBLIC:DOCMAP -->

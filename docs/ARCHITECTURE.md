@@ -1,7 +1,7 @@
 <!-- BEGIN:HARNESS:ARCH:INDEX -->
 # Architecture — ClawMarket
 
-> **Version**: v1.0
+> **Version**: Current repository snapshot
 > **Reading order**: Read this index first, then follow the modules in `docs/architecture/*.md` in order
 
 ---

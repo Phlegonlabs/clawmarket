@@ -1,24 +1,28 @@
 <!-- BEGIN:HARNESS:GITBOOK:README -->
 # ClawMarket
 
-ClawMarket prepared with the Harness Engineering and Orchestrator workflow.
+Agent-first strategy marketplace on OKX X Layer with x402 payments, Cloudflare Workers, and Astro + React Islands.
 
-## What Is clawmarket?
+## What Is ClawMarket?
 
-ClawMarket prepared with the Harness Engineering and Orchestrator workflow.
+ClawMarket is an agent-first strategy marketplace on OKX X Layer. Publishers submit natural-language strategy packages, buyers discover and backtest them, and purchases settle through x402 with permanent entitlements.
 
-Runtime auto-dispatch currently covers `project-discovery`, `MARKET_RESEARCH`, `TECH_STACK`, `prd-architect`, `scaffold-generator`, the UI design loop, `EXECUTING`, `VALIDATING`, and `context-compactor`.
-After an interactive phase is complete, advance the lifecycle with `bun harness:advance`.
-`bun harness:autoflow` advances only after the current phase's required outputs exist; if scaffold artifacts are missing, it stops and surfaces the missing phase work instead of skipping ahead. During `EXECUTING`, it auto-compacts and merges `REVIEW` milestones, then continues into the next milestone.
-If product scope changes after execution begins, update the PRD first and run `bun harness:sync-backlog` before implementing the new work.
-During scaffold setup, do not pre-install project frameworks such as Next.js or Tauri; add them later inside milestone tasks.
+## Current Repo Status
+
+- Phase: `EXECUTING`
+- Progress: 30/35 tasks marked DONE across 10 milestones
+- Open issues: tracked in docs/PROGRESS.md and .harness/state.json
+- Workspaces: `apps/api`, `apps/backtest`, `apps/web`
 
 ## Quick Start
 
 ```bash
 bun install
-bun harness:advance
-bun harness:env
-bun harness:audit
+bun run typecheck:root
+bun run test
+bun run dev:api
+bun run dev:web
 ```
+
+Use `docs/PROGRESS.md` for execution status, `docs/architecture/` for system boundaries, and `docs/gitbook/api-reference/overview.md` for endpoint coverage.
 <!-- END:HARNESS:GITBOOK:README -->

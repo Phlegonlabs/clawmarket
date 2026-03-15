@@ -1,8 +1,8 @@
 <!-- BEGIN:HARNESS:PRD:INDEX -->
 # PRD — ClawMarket
 
-> **Version**: v1.0
-> **Status**: Draft
+> **Version**: v1.4
+> **Status**: Active working specification
 > **Reading order**: Start with this index, then read `docs/prd/*.md` in order
 
 ---

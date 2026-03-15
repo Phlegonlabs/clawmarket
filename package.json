@@ -1,7 +1,7 @@
 {
   "name": "clawmarket",
   "version": "0.1.0",
-  "description": "ClawMarket prepared with the Harness Engineering and Orchestrator workflow.",
+  "description": "Agent-first strategy marketplace on OKX X Layer with x402 payments, Cloudflare Workers, and Astro + React Islands.",
   "private": true,
   "type": "module",
   "packageManager": "bun@latest",

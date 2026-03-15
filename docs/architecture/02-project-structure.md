@@ -1,74 +1,42 @@
-## 2. Directory Structure
+## 2. Project Structure
 
 ```text
 clawmarket/
-├── AGENTS.md
-├── CLAUDE.md
-├── README.md
-├── agents/
 ├── apps/
-│   ├── web/                       ← Astro + React Islands (Cloudflare Pages)
-│   │   ├── astro.config.mjs
-│   │   ├── src/
-│   │   │   ├── layouts/           ← Astro layouts (BaseLayout.astro)
-│   │   │   ├── pages/             ← Astro pages (*.astro) — file-based routing
-│   │   │   │   ├── index.astro
-│   │   │   │   ├── strategies/
-│   │   │   │   │   ├── index.astro
-│   │   │   │   │   └── [slug].astro
-│   │   │   │   ├── docs/
-│   │   │   │   │   └── openclaw.astro
-│   │   │   │   └── status.astro
-│   │   │   ├── components/
-│   │   │   │   ├── astro/         ← Pure Astro components (zero JS)
-│   │   │   │   ├── islands/       ← React Islands (interactive, client:*)
-│   │   │   │   └── ui/            ← shadcn/ui components (used by islands)
-│   │   │   ├── hooks/             ← React hooks (used by islands)
-│   │   │   ├── lib/               ← Shared utilities
-│   │   │   │                  ├── erc8004.ts          ← (M9) ERC-8004 Identity Registry wrapper
-│   │   │   │                  └── erc8004-reputation.ts ← (M9) ERC-8004 Reputation Registry wrapper
-│   │   │   └── styles/            ← Global CSS + Tailwind
-│   │   └── public/
+│   ├── api/
+│   │   ├── src/app/routes/        ← health, strategies, purchases, execution, identity, analytics, bundles, credits, leaderboard
+│   │   ├── src/services/          ← business logic
+│   │   ├── src/lib/               ← D1, Workers AI, x402, OKX, ERC-8004, Stripe helpers
+│   │   └── src/__tests__/         ← route/service/lib coverage
+│   ├── backtest/
+│   │   └── src/                   ← worker entry + backtest engine
+│   └── web/
+│       ├── src/pages/             ← Astro routes (`index`, `strategies`, `bundles`, `leaderboard`, `status`, `docs/openclaw`)
+│       ├── src/components/astro/  ← static UI
+│       ├── src/components/islands/← interactive React islands
+│       ├── src/components/ui/     ← shared UI primitives
+│       └── src/hooks/             ← API-fetch hooks for islands
 ├── packages/
-│   └── shared/
+│   ├── contracts/                 ← shared Zod schemas and TypeScript types
+│   ├── db/                        ← Drizzle schema + migrations
+│   └── shared/                    ← placeholder for future shared runtime helpers / wrappers
 ├── docs/
-│   ├── PRD.md
-│   ├── ARCHITECTURE.md
-│   ├── PROGRESS.md
-│   ├── prd/
-│   ├── architecture/
-│   ├── progress/
-│   ├── ai/
-│   ├── public/
-│   ├── adr/
-│   ├── design/
-│   └── gitbook/
-│   │   │   │   ├── leaderboard.astro     ← (M7) Leaderboard page
-│   │   │   │   ├── bundles/              ← (M10) Bundle pages
-│   │   │   │   │   ├── index.astro
-│   │   │   │   │   └── [slug].astro
-├── .harness/
-│   ├── types.ts
-│   ├── init.ts
-│   ├── advance.ts
-│   ├── state.ts
-│   ├── validate.ts
-│   ├── compact.ts
-│   ├── resume.ts
-│   ├── runtime/
-│   └── state.json
-├── scripts/
-│   └── harness-local/
-│       ├── restore.ts
-│       └── manifest.json
-├── .dependency-cruiser.cjs
-├── bunfig.toml
-├── src/
-│   ├── types/
-│   ├── config/
-│   ├── lib/
-│   ├── services/
-│   └── app/
-├── tests/
-└── .github/workflows/
+│   ├── architecture/              ← internal architecture notes
+│   ├── adr/                       ← architectural decisions
+│   ├── gitbook/                   ← public-facing docs
+│   ├── prd/                       ← working product spec
+│   └── progress/                  ← generated execution recovery modules
+└── .harness/                      ← local project state and doc generation runtime
 ```
+
+### 2.1 Route and Page Shape
+
+- API route groups are organized by capability, not by consumer.
+- Astro pages are thin shells; interactive behavior lives in islands.
+- The backtest worker remains isolated from the main API and is reached through a service binding rather than direct shared runtime state.
+
+### 2.2 Documentation Shape
+
+- `README.md`, `docs/public/*`, `docs/PRD.md`, and `docs/ARCHITECTURE.md` are managed through the local harness doc generator.
+- `docs/PROGRESS.md` and `docs/progress/*` are generated from `.harness/state.json`.
+- GitBook pages are hand-maintained summaries and should not claim features that only exist as placeholders or stubs.
