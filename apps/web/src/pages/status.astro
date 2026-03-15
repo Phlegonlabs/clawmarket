@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import StatusDashboard from "../components/islands/StatusDashboard";
+---
+
+<BaseLayout title="Status" description="ClawMarket platform status and health">
+  <section class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="mb-2 text-3xl font-bold">System Status</h1>
+    <p class="mb-8 text-[var(--color-muted-foreground)]">
+      Real-time health of ClawMarket services. Auto-refreshes every 30 seconds.
+    </p>
+    <StatusDashboard client:load />
+  </section>
+</BaseLayout>
