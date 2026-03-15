@@ -89,15 +89,15 @@
 | T025 | V2-F008c | Leaderboard page (Astro + React Island) + dynamic featured | DONE |
 
 ### M8: x402 V2 Payment Evolution
-- **Status**: NOT_STARTED
+- **Status**: DONE
 - **Features**: V2-F006
-- **Branch**: milestone/m8-x402-v2
+- **Branch**: milestone/m8-x402-v2 (merged to main)
 
 | Task | Feature | Description | Status |
 |------|---------|-------------|--------|
-| T026 | V2-F006a | x402 V2 SDK integration + wallet session management | NOT_STARTED |
-| T027 | V2-F006b | Credit balance service + top-up flow | NOT_STARTED |
-| T028 | V2-F006c | Stripe fiat on-ramp (optional, non-blocking) | NOT_STARTED |
+| T026 | V2-F006a | x402 V2 SDK integration + wallet session management | DONE |
+| T027 | V2-F006b | Credit balance service + top-up flow | DONE |
+| T028 | V2-F006c | Stripe fiat on-ramp (optional, non-blocking) | DONE |
 
 ### M9: Trust & Identity Layer
 - **Status**: NOT_STARTED
@@ -135,7 +135,7 @@
 | M5: Polish | 2 | 2 | 100% |
 | M6: Marketplace Intelligence | 4 | 4 | 100% |
 | M7: Leaderboard & Social Proof | 3 | 3 | 100% |
-| M8: x402 V2 Payment Evolution | 3 | 0 | 0% |
+| M8: x402 V2 Payment Evolution | 3 | 3 | 100% |
 | M9: Trust & Identity Layer | 3 | 0 | 0% |
 | M10: Strategy Bundles | 4 | 0 | 0% |
-| **Total** | **35** | **25** | **71%** |
+| **Total** | **35** | **28** | **80%** |
