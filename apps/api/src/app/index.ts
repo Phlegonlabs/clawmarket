@@ -1,12 +1,21 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import type { Env } from "../types/bindings.js";
+import { executionRoute } from "./routes/execution.js";
 import { healthRoute } from "./routes/health.js";
+import { publishRoute } from "./routes/publish.js";
+import { purchasesRoute } from "./routes/purchases.js";
+import { strategiesRoute } from "./routes/strategies.js";
 
 const app = new Hono<{ Bindings: Env }>();
 
 app.use("/*", cors());
 
+// Mount all route groups under /api
 app.route("/api", healthRoute);
+app.route("/api", strategiesRoute);
+app.route("/api", publishRoute);
+app.route("/api", purchasesRoute);
+app.route("/api", executionRoute);
 
 export default app;
