@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import type { Env } from "../types/bindings.js";
+import { backtestRoute } from "./routes/backtest.js";
 import { executionRoute } from "./routes/execution.js";
 import { healthRoute } from "./routes/health.js";
 import { publishRoute } from "./routes/publish.js";
@@ -18,6 +19,7 @@ app.route("/api", strategiesRoute);
 app.route("/api", publishRoute);
 app.route("/api", purchasesRoute);
 app.route("/api", recommendRoute);
+app.route("/api", backtestRoute);
 app.route("/api", executionRoute);
 
 export default app;
