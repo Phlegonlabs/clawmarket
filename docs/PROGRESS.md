@@ -65,6 +65,63 @@
 | T016 | F016 | OpenClaw skill manifest | NOT_STARTED |
 | T017 | F017 | LLM index files | NOT_STARTED |
 
+### M6: Marketplace Intelligence
+- **Status**: NOT_STARTED
+- **Features**: V1E-F005, V1E-F001, V1E-F004, V1E-F003
+- **Branch**: milestone/m6-marketplace-intelligence
+
+| Task | Feature | Description | Status |
+|------|---------|-------------|--------|
+| T019 | V1E-F005 | Workers AI model configuration upgrade (GLM-4.7-Flash / Nemotron-3) | NOT_STARTED |
+| T020 | V1E-F001 | Auto-backtest + performance badge service | NOT_STARTED |
+| T021 | V1E-F004 | Strategy comparison API (2-4 side-by-side + AI summary) | NOT_STARTED |
+| T022 | V1E-F003 | Publisher analytics API | NOT_STARTED |
+
+### M7: Leaderboard & Social Proof
+- **Status**: NOT_STARTED
+- **Features**: V2-F008
+- **Branch**: milestone/m7-leaderboard
+
+| Task | Feature | Description | Status |
+|------|---------|-------------|--------|
+| T023 | V2-F008a | Leaderboard data aggregation service + Cron Trigger | NOT_STARTED |
+| T024 | V2-F008b | Leaderboard API endpoints + trending algorithm | NOT_STARTED |
+| T025 | V2-F008c | Leaderboard page (Astro + React Island) + dynamic featured | NOT_STARTED |
+
+### M8: x402 V2 Payment Evolution
+- **Status**: NOT_STARTED
+- **Features**: V2-F006
+- **Branch**: milestone/m8-x402-v2
+
+| Task | Feature | Description | Status |
+|------|---------|-------------|--------|
+| T026 | V2-F006a | x402 V2 SDK integration + wallet session management | NOT_STARTED |
+| T027 | V2-F006b | Credit balance service + top-up flow | NOT_STARTED |
+| T028 | V2-F006c | Stripe fiat on-ramp (optional, non-blocking) | NOT_STARTED |
+
+### M9: Trust & Identity Layer
+- **Status**: NOT_STARTED
+- **Features**: V2-F004
+- **Branch**: milestone/m9-trust-identity
+
+| Task | Feature | Description | Status |
+|------|---------|-------------|--------|
+| T029 | V2-F004a | ERC-8004 Identity Registry integration | NOT_STARTED |
+| T030 | V2-F004b | ERC-8004 Reputation Registry + score aggregation | NOT_STARTED |
+| T031 | V2-F004c | Publisher verification API + agent identity endpoint | NOT_STARTED |
+
+### M10: Strategy Bundles
+- **Status**: NOT_STARTED
+- **Features**: V2-F005
+- **Branch**: milestone/m10-strategy-bundles
+
+| Task | Feature | Description | Status |
+|------|---------|-------------|--------|
+| T032 | V2-F005a | Bundle schema + CRUD API | NOT_STARTED |
+| T033 | V2-F005b | Bundle x402 payment + multi-entitlement minting | NOT_STARTED |
+| T034 | V2-F005c | Portfolio-level combined backtest | NOT_STARTED |
+| T035 | V2-F005d | Bundle catalog + detail page (Astro + React Island) | NOT_STARTED |
+
 ---
 
 ## Summary
@@ -76,4 +133,9 @@
 | M3: AI Features | 2 | 0 | 0% |
 | M4: Frontend | 6 | 0 | 0% |
 | M5: Polish | 2 | 0 | 0% |
-| **Total** | **18** | **0** | **0%** |
+| M6: Marketplace Intelligence | 4 | 0 | 0% |
+| M7: Leaderboard & Social Proof | 3 | 0 | 0% |
+| M8: x402 V2 Payment Evolution | 3 | 0 | 0% |
+| M9: Trust & Identity Layer | 3 | 0 | 0% |
+| M10: Strategy Bundles | 4 | 0 | 0% |
+| **Total** | **35** | **0** | **0%** |

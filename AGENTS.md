@@ -118,6 +118,11 @@ main                          ← Always deployable
   ├── milestone/m3-ai-features
   ├── milestone/m4-frontend
   ├── milestone/m5-polish
+  ├── milestone/m6-marketplace-intelligence
+  ├── milestone/m7-leaderboard
+  ├── milestone/m8-x402-v2
+  ├── milestone/m9-trust-identity
+  ├── milestone/m10-strategy-bundles
   └── fix/[issue-id]
 ```
 

@@ -31,6 +31,9 @@
   - [ ] 核心表：agent_identities、publishers、strategy_packages、purchase_intents、purchases、entitlements、revenue_ledger
   - [ ] Drizzle migration 生成并可应用到 D1
   - [ ] 多链预留：purchases/purchase_intents 包含 chainId 字段
+  - [ ] Chain Registry 类型定义就绪（`ChainId`, `ChainConfig`, `PaymentToken` Zod schemas in `packages/contracts`）
+  - [ ] `entitlements` 表无 `chain_id`（链无关设计，ADR-007）
+  - [ ] `strategy_packages` 表含 `supported_chain_ids` JSON 数组
 - **Priority**: P0
 - **Dependencies**: F002
 
@@ -67,6 +70,8 @@
   - [ ] `POST /api/strategies/purchases/complete` — 签名验证 + 结算
   - [ ] `GET /api/strategies/:slug/unlocked` — 需 entitlement 后返回完整包
   - [ ] 多链 chainId 参数预留
+  - [ ] EIP-712 domain separator 必须包含 `chainId`（防跨链重放攻击，ADR-007）
+  - [ ] `chainId` 参数通过 Chain Registry 验证（`resolveChain()` 返回 `Result<ChainConfig, E>`）
 - **Priority**: P0
 - **Dependencies**: F005
 
@@ -218,3 +223,303 @@
   - [ ] 内容自动同步最新策略目录信息
 - **Priority**: P2
 - **Dependencies**: F012
+
+---
+
+### Milestone 6: Marketplace Intelligence（M3 之后，M4 之前或并行）
+
+#### V1E-F005: Workers AI Model Configuration Upgrade
+
+- **Description**: 升级 Workers AI 模型配置，支持 GLM-4.7-Flash / Nemotron-3 等新一代模型，实现可配置模型选择
+- **Acceptance criteria**:
+  - [ ] `lib/workers-ai.ts` 支持模型配置映射（model registry）
+  - [ ] 支持按用途选择模型：recommendation → GLM-4.7-Flash, analysis → Nemotron-3, default → Llama-3.1-8B
+  - [ ] 模型配置通过环境变量或 Wrangler config 管理，不硬编码
+  - [ ] 回归测试：现有 F009/F010 功能不受影响
+  - [ ] 性能基准：新模型推理延迟 ≤ 旧模型 80%
+- **Priority**: P1
+- **Dependencies**: F004
+- **Task**: T019
+
+#### V1E-F001: Auto-Backtest & Performance Badge Service
+
+- **Description**: 自动回测 + 绩效徽章服务 — 策略提交后自动触发回测，生成 Sharpe/DD/Win Rate 验证标签
+- **Acceptance criteria**:
+  - [ ] 策略发布时自动触发回测（Cron 或 publish webhook）
+  - [ ] 计算并存储绩效指标：Sharpe Ratio, Max Drawdown, Win Rate, Total Return
+  - [ ] 指标通过阈值验证生成徽章：`verified-sharpe`, `low-drawdown`, `high-win-rate`
+  - [ ] 徽章存入 D1 `strategy_badges` 表，关联 strategy_id
+  - [ ] `GET /api/strategies/:slug` 响应包含 badges 数组
+  - [ ] 徽章展示在策略卡片和详情页
+  - [ ] 响应包含 `data` + `display`
+- **Priority**: P1
+- **Dependencies**: V1E-F005, F010
+- **Task**: T020
+
+#### V1E-F004: Strategy Comparison API
+
+- **Description**: 策略比较 API — 支持 2-4 个策略并排比较 + AI 生成对比总结
+- **Acceptance criteria**:
+  - [ ] `POST /api/strategies/compare` — 接受 2-4 个 strategy slug
+  - [ ] 返回并排比较数据：价格、family、指标、徽章、回测结果
+  - [ ] Workers AI 生成自然语言比较总结（优劣分析、适用场景推荐）
+  - [ ] 比较结果缓存（KV 或 D1，TTL 1 小时）
+  - [ ] 响应包含 `data` + `display`（markdown/telegram/discord）
+  - [ ] 输入验证：slug 数量 2-4，策略必须存在
+- **Priority**: P1
+- **Dependencies**: V1E-F005, F010
+- **Task**: T021
+
+#### V1E-F003: Publisher Analytics API
+
+- **Description**: Publisher 分析 API — 提供收入、销量、策略表现数据
+- **Acceptance criteria**:
+  - [ ] `GET /api/openclaw/publishers/:publisherId/analytics` — 需 publisher 身份验证
+  - [ ] 返回数据：总收入、总销量、按策略分拆、时间趋势（7d/30d/all）
+  - [ ] 策略表现汇总：每个策略的回测指标、徽章数、购买转化率
+  - [ ] 数据从 revenue_ledger + purchases + strategy_badges 聚合
+  - [ ] 响应包含 `data` + `display`
+  - [ ] 按 publisherId 限流
+- **Priority**: P2
+- **Dependencies**: V1E-F005, F007
+- **Task**: T022
+
+---
+
+### Milestone 7: Leaderboard & Social Proof（M4/M5 之后）
+
+#### V2-F008a: Leaderboard Data Aggregation Service + Cron Trigger
+
+- **Description**: Leaderboard 数据聚合服务 — Cron Trigger 定期计算策略排名
+- **Acceptance criteria**:
+  - [ ] D1 表：`leaderboard_snapshots`（strategy_id, rank, score, category, snapshot_date）
+  - [ ] 排名维度：overall, by_family, by_chain, trending
+  - [ ] 评分算法：加权公式 = 0.3 × Sharpe + 0.25 × purchases + 0.2 × win_rate + 0.15 × recency + 0.1 × badge_count
+  - [ ] Cron Trigger 每 6 小时执行一次聚合
+  - [ ] Trending 算法：7 天购买增速 + 回测指标变化率
+  - [ ] 历史快照保留 90 天
+- **Priority**: P1
+- **Dependencies**: T020, F005, F007
+- **Task**: T023
+
+#### V2-F008b: Leaderboard API Endpoints + Trending Algorithm
+
+- **Description**: Leaderboard API 端点 + Trending 算法
+- **Acceptance criteria**:
+  - [ ] `GET /api/leaderboard` — 返回排名列表（支持 category、limit、offset 参数）
+  - [ ] `GET /api/leaderboard/trending` — 返回 trending 策略（7d 窗口）
+  - [ ] `GET /api/leaderboard/:strategySlug/rank` — 单策略排名查询
+  - [ ] 响应包含 `data` + `display`
+  - [ ] 缓存层：KV 缓存排名结果，TTL 与 Cron 周期对齐
+  - [ ] 公开免费 API
+- **Priority**: P1
+- **Dependencies**: T023
+- **Task**: T024
+
+#### V2-F008c: Leaderboard Page + Dynamic Featured
+
+- **Description**: Leaderboard 页面（Astro + React Island）+ 首页动态 Featured 区域
+- **Acceptance criteria**:
+  - [ ] `pages/leaderboard.astro` 外壳 + `LeaderboardTable` React Island (`client:load`)
+  - [ ] 排名表格：rank、策略名、publisher、Sharpe、Win Rate、购买数、趋势箭头
+  - [ ] Tab 切换：Overall / By Family / Trending
+  - [ ] 首页 Featured Strategies 区域从 leaderboard trending 数据拉取（替换静态 featured）
+  - [ ] 响应式布局（Desktop: 表格; Mobile: 卡片）
+  - [ ] URL 同步 tab 状态
+- **Priority**: P1
+- **Dependencies**: T024, F012
+- **Task**: T025
+
+---
+
+### Milestone 8: x402 V2 Payment Evolution（V2 阶段）
+
+#### V2-F006a: x402 V2 SDK Integration + Wallet Session Management
+
+- **Description**: 集成 x402 V2 SDK，支持钱包会话管理
+- **Acceptance criteria**:
+  - [ ] 升级 x402 SDK 到 V2 版本
+  - [ ] 支持 wallet session：创建、续期、销毁会话
+  - [ ] Session-based payment：会话内购买无需重复签名
+  - [ ] 向后兼容：V1 单次支付流程继续工作
+  - [ ] Multi-chain session：session 绑定 chainId
+  - [ ] Session 超时和安全策略配置
+- **Priority**: P1
+- **Dependencies**: F006
+- **Task**: T026
+
+#### V2-F006b: Credit Balance Service + Top-up Flow
+
+- **Description**: Credit balance 服务 + 充值流程
+- **Acceptance criteria**:
+  - [ ] D1 表：`credit_balances`（agent_id, balance, chain_id, updated_at）
+  - [ ] D1 表：`credit_transactions`（id, agent_id, type, amount, reference, created_at）
+  - [ ] `POST /api/credits/top-up` — x402 充值（链上转账 → credit 入账）
+  - [ ] `GET /api/credits/balance` — 查询余额
+  - [ ] `POST /api/strategies/purchases/complete` 支持 credit 扣款模式
+  - [ ] 余额不足时自动降级为 x402 直接支付
+  - [ ] 响应包含 `data` + `display`
+- **Priority**: P1
+- **Dependencies**: T026
+- **Task**: T027
+
+#### V2-F006c: Stripe Fiat On-ramp (Optional, Non-blocking)
+
+- **Description**: Stripe 法币入口 — 法币充值 credit（可选，非阻塞）
+- **Acceptance criteria**:
+  - [ ] Stripe Checkout Session 创建 → 充值 credit balance
+  - [ ] Webhook 处理：payment_intent.succeeded → credit 入账
+  - [ ] 支持 USD/EUR → credit 转换（汇率通过 Stripe 管理）
+  - [ ] 充值记录写入 `credit_transactions`（type: `fiat_topup`）
+  - [ ] 前端充值按钮（React Island）跳转 Stripe Checkout
+  - [ ] **Feature flag 控制**：可独立开关，不影响 crypto 支付流程
+- **Priority**: P2
+- **Dependencies**: T027
+- **Task**: T028
+
+---
+
+### Milestone 9: Trust & Identity Layer（V2 阶段）
+
+#### V2-F004a: ERC-8004 Identity Registry Integration
+
+- **Description**: 集成 ERC-8004 身份注册合约，实现链上身份验证
+- **Acceptance criteria**:
+  - [ ] `lib/erc8004.ts` — ERC-8004 Identity Registry 合约交互 wrapper
+  - [ ] 支持身份注册：publisher 和 agent 均可注册链上身份
+  - [ ] 支持身份查询：通过 address 查询注册状态和元数据
+  - [ ] X Layer 合约地址配置（环境变量）
+  - [ ] 身份数据缓存（D1，TTL 24 小时）
+  - [ ] 错误处理：合约调用失败的 graceful degradation
+- **Priority**: P1
+- **Dependencies**: V1 完成
+- **Task**: T029
+
+#### V2-F004b: ERC-8004 Reputation Registry + Score Aggregation
+
+- **Description**: 集成 ERC-8004 声誉注册 + 评分聚合
+- **Acceptance criteria**:
+  - [ ] `lib/erc8004-reputation.ts` — Reputation Registry 合约交互 wrapper
+  - [ ] 声誉评分聚合：购买数、徽章数、策略质量、buyer 反馈 → 链上声誉分
+  - [ ] 声誉分写入链上（批量更新，Cron Trigger 每日执行）
+  - [ ] `GET /api/publishers/:publisherId/reputation` — 查询声誉分 + 详情
+  - [ ] 声誉分展示在 publisher 资料和策略卡片
+  - [ ] 响应包含 `data` + `display`
+- **Priority**: P1
+- **Dependencies**: T029
+- **Task**: T030
+
+#### V2-F004c: Publisher Verification API + Agent Identity Endpoint
+
+- **Description**: Publisher 验证 API + Agent 身份验证端点
+- **Acceptance criteria**:
+  - [ ] `POST /api/openclaw/publishers/verify` — 提交 ERC-8004 身份证明 → 获取 verified 状态
+  - [ ] `GET /api/openclaw/publishers/:publisherId/verification` — 查询验证状态
+  - [ ] `POST /api/agents/verify` — Agent 身份验证（ERC-8004 签名 challenge）
+  - [ ] Verified 状态写入 D1 `publishers` 表（verified_at, verification_method）
+  - [ ] Verified badge 展示在策略卡片和 publisher 页面
+  - [ ] 替代传统 KYC — 无需收集个人信息
+  - [ ] 响应包含 `data` + `display`
+- **Priority**: P1
+- **Dependencies**: T030
+- **Task**: T031
+
+---
+
+### Milestone 10: Strategy Bundles（V2 阶段）
+
+#### V2-F005a: Bundle Schema + CRUD API
+
+- **Description**: Strategy Bundle schema 定义 + CRUD API
+- **Acceptance criteria**:
+  - [ ] Zod schema：`BundleSchema`（id, name, description, strategy_slugs[], pricing, tags）— 定义在 `packages/contracts`
+  - [ ] D1 表：`bundles`（id, name, slug, description, strategy_ids, price, publisher_id, created_at）
+  - [ ] `GET /api/bundles` — Bundle 列表（公开）
+  - [ ] `GET /api/bundles/:slug` — Bundle 详情 + 包含的策略预览
+  - [ ] `POST /api/openclaw/bundles/publish` — Publisher 创建 Bundle
+  - [ ] Bundle 价格须 ≤ 包含策略单独购买总价的 80%（折扣验证）
+  - [ ] 响应包含 `data` + `display`
+- **Priority**: P1
+- **Dependencies**: F005, T020
+- **Task**: T032
+
+#### V2-F005b: Bundle x402 Payment + Multi-entitlement Minting
+
+- **Description**: Bundle x402 支付 + 多 entitlement 铸造
+- **Acceptance criteria**:
+  - [ ] `POST /api/bundles/purchase-intent` — 返回 HTTP 402 + x402 challenge（Bundle 价格）
+  - [ ] 支付完成后一次性铸造 Bundle 内所有策略的 entitlement
+  - [ ] 事务性：所有 entitlement 要么全部创建，要么全部回滚
+  - [ ] Revenue 分成：按 Bundle 内各策略价格比例分配给各 publisher
+  - [ ] 支持 credit balance 扣款（如 M8 已完成）
+  - [ ] 防止重复铸造：已拥有 Bundle 内某策略 entitlement 的 buyer 不重复创建
+- **Priority**: P1
+- **Dependencies**: T032, F006
+- **Task**: T033
+
+#### V2-F005c: Portfolio-level Combined Backtest
+
+- **Description**: Portfolio 级别组合回测 — 将 Bundle 内多策略作为组合进行回测
+- **Acceptance criteria**:
+  - [ ] `POST /api/bundles/:slug/backtest` — 组合回测端点
+  - [ ] 组合回测指标：portfolio return, portfolio drawdown, correlation matrix, diversification ratio
+  - [ ] Workers AI 生成组合分析：策略间相关性、风险分散效果、最优权重建议
+  - [ ] 回测运行在 backtest Worker（Service Binding）
+  - [ ] 响应包含 `data` + `display`
+  - [ ] 公开免费（转化工具）
+- **Priority**: P2
+- **Dependencies**: T032, F010
+- **Task**: T034
+
+#### V2-F005d: Bundle Catalog + Detail Page
+
+- **Description**: Bundle 目录 + 详情页面（Astro + React Island）
+- **Acceptance criteria**:
+  - [ ] `pages/bundles/index.astro` 外壳 + `BundleCatalog` React Island (`client:load`)
+  - [ ] Bundle 卡片：名称、包含策略数、价格、折扣比例、publisher
+  - [ ] 筛选：family 覆盖、价格范围、策略数量
+  - [ ] `pages/bundles/[slug].astro` — Bundle 详情页
+  - [ ] 详情页展示：包含策略列表、组合回测结果、购买引导
+  - [ ] 响应式布局
+- **Priority**: P1
+- **Dependencies**: T032, F013
+- **Task**: T035
+
+---
+
+### V3 远景（仅记录，标记 Future/Proposed）
+
+> 以下 feature 列入远景规划，V2 阶段不实现。记录以备未来评估。
+
+#### V3-F002: NFT 策略授权
+
+- **Description**: 购买时铸造 ERC-721 NFT 作为策略授权凭证，支持链上所有权转移和二级市场交易
+- **Scope**:
+  - ERC-721 合约：策略购买 → NFT 铸造 → 链上所有权证明
+  - 二级市场：NFT 持有者可在 OpenSea / OKX NFT 等平台转售
+  - ERC-2981 版税：二级市场交易中 publisher 自动获得版税分成（建议 5-10%）
+  - 替代当前 entitlement 模型或作为可选升级
+- **Status**: Future/Proposed
+- **Prerequisites**: V2 完成, NFT 市场流动性评估
+
+#### V3-F003: Hosted Per-User Agent
+
+- **Description**: 基于 Cloudflare Agents SDK Durable Object，为每个 buyer 托管一个有状态 agent
+- **Scope**:
+  - Durable Object per buyer：持久化 agent 状态（持仓、偏好、执行历史）
+  - Agent 自主执行：接收信号 → 评估 → 调用 wrapped OKX 执行
+  - WebSocket 实时通信：buyer ↔ agent 双向交互
+  - 计费：x402 按 agent 运行时长 + 信号处理次数微支付
+- **Status**: Future/Proposed
+- **Prerequisites**: V2-F001 (信号引擎), V2-F006 (x402 V2)
+
+#### V3-F004: Volatility Shield
+
+- **Description**: 实时波动监控 → 自动对冲机制，x402 微支付按激活计费
+- **Scope**:
+  - 波动监控：Cron + WebSocket 监控市场波动指标（VIX-equivalent, IV, realized vol）
+  - 自动对冲：波动超阈值时触发对冲策略（OKX 反向仓位 / 期权对冲）
+  - 微支付计费：x402 per-activation 计费（仅在触发对冲时收费）
+  - 用户可配置阈值和对冲策略
+- **Status**: Future/Proposed
+- **Prerequisites**: V2-F002 (Agent 自动执行), V2-F006 (x402 V2)

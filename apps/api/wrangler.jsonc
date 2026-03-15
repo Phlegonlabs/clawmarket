@@ -1,0 +1,34 @@
+{
+  "name": "clawmarket-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-03-14",
+  "compatibility_flags": ["nodejs_compat"],
+
+  // D1 Database binding
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "clawmarket-db",
+      "database_id": "placeholder-replace-with-actual-id"
+    }
+  ],
+
+  // Workers AI binding
+  "ai": {
+    "binding": "AI"
+  },
+
+  // Service bindings (backtest worker)
+  "services": [
+    {
+      "binding": "BACKTEST",
+      "service": "clawmarket-backtest"
+    }
+  ],
+
+  // Environment variables (non-secret defaults)
+  "vars": {
+    "ENVIRONMENT": "development",
+    "PLATFORM_REVENUE_SHARE_BPS": "1000"
+  }
+}
