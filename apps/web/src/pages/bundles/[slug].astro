@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const { slug } = Astro.params;
+if (!slug) return Astro.redirect("/bundles");
+
+const API_BASE = import.meta.env.PUBLIC_API_URL ?? "https://api.clawmarket.com";
+
+let bundle: {
+  name: string;
+  description: string;
+  priceUsd: number;
+  strategyCount: number;
+  discountPercent: number;
+  totalIndividualPrice: number;
+  strategies: Array<{ slug: string; title: string; family: string; priceUsd: number }>;
+  tags: string[];
+} | null = null;
+
+try {
+  const res = await fetch(`${API_BASE}/api/bundles/${slug}`);
+  if (res.ok) {
+    const json = await res.json() as { data: typeof bundle };
+    bundle = json.data;
+  }
+} catch {
+  // Will show 404
+}
+
+if (!bundle) {
+  return new Response("Bundle not found", { status: 404 });
+}
+---
+
+<BaseLayout title={bundle.name} description={bundle.description}>
+  <section class="mx-auto max-w-4xl px-4 py-12">
+    <h1 class="text-3xl font-bold">{bundle.name}</h1>
+    <p class="mt-2 text-[var(--color-muted-foreground)]">{bundle.description}</p>
+
+    <!-- Pricing -->
+    <div class="mt-6 flex items-center gap-4">
+      <span class="text-3xl font-bold text-[var(--color-accent)]">${bundle.priceUsd}</span>
+      <span class="text-lg text-[var(--color-muted-foreground)] line-through">${bundle.totalIndividualPrice}</span>
+      <span class="rounded-full bg-[var(--color-accent)] px-3 py-1 text-sm font-medium text-[var(--color-accent-foreground)]">
+        {bundle.discountPercent}% off
+      </span>
+    </div>
+
+    <!-- Included strategies -->
+    <div class="mt-8">
+      <h2 class="mb-4 text-xl font-semibold">Included Strategies ({bundle.strategies.length})</h2>
+      <div class="space-y-3">
+        {bundle.strategies.map((s) => (
+          <a
+            href={`/strategies/${s.slug}`}
+            class="flex items-center justify-between rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-card)] p-4 no-underline hover:border-[var(--color-accent)]"
+          >
+            <div>
+              <p class="font-medium">{s.title}</p>
+              <p class="text-sm text-[var(--color-muted-foreground)]">{s.family}</p>
+            </div>
+            <span class="text-[var(--color-muted-foreground)]">${s.priceUsd}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <!-- Purchase guidance -->
+    <div class="mt-8 rounded-[var(--radius-lg)] border border-[var(--color-accent)] bg-[var(--color-card)] p-6">
+      <h2 class="mb-2 text-lg font-semibold">How to Purchase</h2>
+      <p class="text-sm text-[var(--color-muted-foreground)]">
+        Use the <a href="/docs/openclaw">OpenClaw skill</a> to purchase this bundle.
+        All strategies are unlocked in a single transaction.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

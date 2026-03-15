@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BundleCatalog from "../../components/islands/BundleCatalog";
+---
+
+<BaseLayout title="Strategy Bundles" description="Discounted strategy bundles on ClawMarket">
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <h1 class="mb-2 text-3xl font-bold">Strategy Bundles</h1>
+    <p class="mb-8 text-[var(--color-muted-foreground)]">
+      Curated collections of strategies at a discount. Buy a bundle, unlock all included strategies.
+    </p>
+    <BundleCatalog client:load />
+  </section>
+</BaseLayout>
