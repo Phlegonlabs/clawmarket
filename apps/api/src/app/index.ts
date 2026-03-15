@@ -6,6 +6,7 @@ import { backtestRoute } from "./routes/backtest.js";
 import { comparisonRoute } from "./routes/comparison.js";
 import { executionRoute } from "./routes/execution.js";
 import { healthRoute } from "./routes/health.js";
+import { leaderboardRoute } from "./routes/leaderboard.js";
 import { llmIndexRoute } from "./routes/llm-index.js";
 import { openclawRoute } from "./routes/openclaw.js";
 import { publishRoute } from "./routes/publish.js";
@@ -27,6 +28,7 @@ app.route("/api", purchasesRoute);
 app.route("/api", recommendRoute);
 app.route("/api", backtestRoute);
 app.route("/api", comparisonRoute);
+app.route("/api", leaderboardRoute);
 app.route("/api", executionRoute);
 
 // Root-level LLM index files
