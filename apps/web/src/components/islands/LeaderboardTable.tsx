@@ -76,7 +76,7 @@ export default function LeaderboardTable() {
                   <tr key={e.slug} className="border-b border-[var(--color-border)] last:border-0 hover:bg-[var(--color-muted)]">
                     <td className="py-3 font-bold">{e.rank}</td>
                     <td className="py-3">
-                      <a href={`/strategies/${e.slug}`} className="font-medium hover:text-[var(--color-accent)]">
+                      <a href={`/strategies/view?slug=${e.slug}`} className="font-medium hover:text-[var(--color-accent)]">
                         {e.title}
                       </a>
                       {e.badgeCount > 0 && (

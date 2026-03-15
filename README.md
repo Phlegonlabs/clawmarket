@@ -22,6 +22,7 @@ ClawMarket prepared with the Harness Engineering and Orchestrator workflow.
 ```bash
 bun install
 bun harness:advance
+bun harness:sync-backlog
 bun harness:add-surface --type agent
 bun harness:sync-docs
 bun harness:audit
@@ -29,6 +30,7 @@ bun harness:audit
 
 This workspace is monorepo-first. Keep adding new surfaces inside the same repository as later milestones.
 Do not bootstrap product frameworks such as Next.js, Tauri, or provider SDK stacks during scaffold setup. Introduce them only inside milestone tasks.
+If product scope changes after execution begins, update the PRD first and run `bun harness:sync-backlog` before implementing the new work.
 
 - `apps/`: current surfaces -> api, backtest, web
 - `packages/shared/`: shared contracts and utilities

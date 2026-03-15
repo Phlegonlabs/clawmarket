@@ -48,7 +48,8 @@
     "harness:compact": "bun .harness/compact.ts",
     "harness:compact:milestone": "bun .harness/compact.ts --milestone",
     "harness:compact:status": "bun .harness/compact.ts --status",
-    "harness:hooks:install": "bun scripts/harness-local/restore.ts"
+    "harness:hooks:install": "bun scripts/harness-local/restore.ts",
+    "harness:sync-backlog": "bun .harness/init.ts --sync-from-prd"
   },
   "devDependencies": {
     "@biomejs/biome": "latest",

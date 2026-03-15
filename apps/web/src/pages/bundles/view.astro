@@ -1,0 +1,10 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BundleDetail from "../../components/islands/BundleDetail";
+---
+
+<BaseLayout title="Bundle Details">
+  <section class="mx-auto max-w-4xl px-4 py-12">
+    <BundleDetail client:load />
+  </section>
+</BaseLayout>

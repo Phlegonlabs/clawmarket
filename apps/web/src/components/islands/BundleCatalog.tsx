@@ -33,7 +33,7 @@ export default function BundleCatalog() {
   return (
     <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {data.map((b) => (
-        <a key={b.slug} href={`/bundles/${b.slug}`} className="no-underline">
+        <a key={b.slug} href={`/bundles/view?slug=${b.slug}`} className="no-underline">
           <Card className="h-full transition-colors hover:border-[var(--color-accent)]">
             <CardHeader>
               <div className="flex items-center justify-between">

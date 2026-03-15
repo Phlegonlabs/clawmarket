@@ -53,7 +53,7 @@ export default function FeaturedStrategies() {
               ))}
             </div>
             <Button variant="outline" size="sm" asChild>
-              <a href={`/strategies/${s.slug}`}>View</a>
+              <a href={`/strategies/view?slug=${s.slug}`}>View</a>
             </Button>
           </CardContent>
         </Card>

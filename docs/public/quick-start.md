@@ -5,6 +5,7 @@
 bun install
 bun .harness/state.ts --show
 bun harness:advance
+bun harness:sync-backlog
 bun harness:env
 bun harness:validate --phase EXECUTING
 bun harness:audit
