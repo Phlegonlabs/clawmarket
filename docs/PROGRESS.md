@@ -1,7 +1,7 @@
 # Progress — ClawMarket
 
 > **Last updated**: 2026-03-15
-> **Phase**: IMPLEMENTATION (M4 in progress)
+> **Phase**: IMPLEMENTATION (M5 next)
 
 ---
 
@@ -42,9 +42,9 @@
 | T010 | F010 | Backtest Worker microservice (Workers AI + OKX) | DONE |
 
 ### M4: Frontend — 全新 UI
-- **Status**: IN_PROGRESS
+- **Status**: DONE
 - **Features**: F011-F015, F018
-- **Branch**: milestone/m4-frontend
+- **Branch**: milestone/m4-frontend (merged to main)
 
 | Task | Feature | Description | Status |
 |------|---------|-------------|--------|
@@ -53,7 +53,7 @@
 | T013 | F013 | Strategy catalog page (React Island) | DONE |
 | T014 | F014 | Strategy detail page (Astro + React Islands) | DONE |
 | T015 | F015 | OpenClaw docs page (pure Astro) | DONE |
-| T018 | F018 | Status page (Astro + React Island) | NOT_STARTED |
+| T018 | F018 | Status page (Astro + React Island) | DONE |
 
 ### M5: OpenClaw Skill + Polish
 - **Status**: NOT_STARTED
@@ -131,11 +131,11 @@
 | M1: Foundation | 4 | 4 | 100% |
 | M2: Core API | 4 | 4 | 100% |
 | M3: AI Features | 2 | 2 | 100% |
-| M4: Frontend | 6 | 5 | 83% |
+| M4: Frontend | 6 | 6 | 100% |
 | M5: Polish | 2 | 0 | 0% |
 | M6: Marketplace Intelligence | 4 | 0 | 0% |
 | M7: Leaderboard & Social Proof | 3 | 0 | 0% |
 | M8: x402 V2 Payment Evolution | 3 | 0 | 0% |
 | M9: Trust & Identity Layer | 3 | 0 | 0% |
 | M10: Strategy Bundles | 4 | 0 | 0% |
-| **Total** | **35** | **15** | **43%** |
+| **Total** | **35** | **16** | **46%** |
