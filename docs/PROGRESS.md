@@ -66,16 +66,16 @@
 | T017 | F017 | LLM index files | DONE |
 
 ### M6: Marketplace Intelligence
-- **Status**: NOT_STARTED
+- **Status**: DONE
 - **Features**: V1E-F005, V1E-F001, V1E-F004, V1E-F003
-- **Branch**: milestone/m6-marketplace-intelligence
+- **Branch**: milestone/m6-marketplace-intelligence (merged to main)
 
 | Task | Feature | Description | Status |
 |------|---------|-------------|--------|
-| T019 | V1E-F005 | Workers AI model configuration upgrade (GLM-4.7-Flash / Nemotron-3) | NOT_STARTED |
-| T020 | V1E-F001 | Auto-backtest + performance badge service | NOT_STARTED |
-| T021 | V1E-F004 | Strategy comparison API (2-4 side-by-side + AI summary) | NOT_STARTED |
-| T022 | V1E-F003 | Publisher analytics API | NOT_STARTED |
+| T019 | V1E-F005 | Workers AI model configuration upgrade (GLM-4.7-Flash / Nemotron-3) | DONE |
+| T020 | V1E-F001 | Auto-backtest + performance badge service | DONE |
+| T021 | V1E-F004 | Strategy comparison API (2-4 side-by-side + AI summary) | DONE |
+| T022 | V1E-F003 | Publisher analytics API | DONE |
 
 ### M7: Leaderboard & Social Proof
 - **Status**: NOT_STARTED
@@ -133,9 +133,9 @@
 | M3: AI Features | 2 | 2 | 100% |
 | M4: Frontend | 6 | 6 | 100% |
 | M5: Polish | 2 | 2 | 100% |
-| M6: Marketplace Intelligence | 4 | 0 | 0% |
+| M6: Marketplace Intelligence | 4 | 4 | 100% |
 | M7: Leaderboard & Social Proof | 3 | 0 | 0% |
 | M8: x402 V2 Payment Evolution | 3 | 0 | 0% |
 | M9: Trust & Identity Layer | 3 | 0 | 0% |
 | M10: Strategy Bundles | 4 | 0 | 0% |
-| **Total** | **35** | **18** | **51%** |
+| **Total** | **35** | **22** | **63%** |
