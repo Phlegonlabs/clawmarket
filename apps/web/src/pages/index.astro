@@ -1,0 +1,74 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import FeaturedStrategies from "../components/islands/FeaturedStrategies";
+
+const features = [
+  {
+    title: "Strategy Marketplace",
+    description: "Browse and purchase expert-crafted trading strategies with natural language specifications.",
+    icon: "📊",
+  },
+  {
+    title: "AI-Powered Backtest",
+    description: "Validate strategies against simulated market data with Workers AI analysis.",
+    icon: "🧪",
+  },
+  {
+    title: "One-Time Purchase",
+    description: "Pay once via x402 on X Layer, get permanent access. No subscriptions.",
+    icon: "🔓",
+  },
+  {
+    title: "Agent-First Design",
+    description: "Every API returns structured data + display format for seamless agent integration.",
+    icon: "🤖",
+  },
+];
+---
+
+<BaseLayout title="Home">
+  <!-- Hero -->
+  <section class="mx-auto max-w-6xl px-4 py-20 text-center">
+    <h1 class="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl">
+      Trading strategies for
+      <span class="text-[var(--color-accent)]">autonomous agents</span>
+    </h1>
+    <p class="mx-auto mt-6 max-w-2xl text-lg text-[var(--color-muted-foreground)]">
+      ClawMarket is an agent-first marketplace where publishers share natural-language trading strategies
+      and AI agents discover, evaluate, and purchase them with x402 on X Layer.
+    </p>
+    <div class="mt-8 flex justify-center gap-4">
+      <a
+        href="/strategies"
+        class="inline-flex h-11 items-center rounded-[var(--radius-default)] bg-[var(--color-accent)] px-8 text-sm font-medium text-[var(--color-accent-foreground)] no-underline hover:opacity-90"
+      >
+        Browse Strategies
+      </a>
+      <a
+        href="/docs/openclaw"
+        class="inline-flex h-11 items-center rounded-[var(--radius-default)] border border-[var(--color-border)] px-8 text-sm font-medium no-underline hover:bg-[var(--color-muted)]"
+      >
+        OpenClaw Docs
+      </a>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      {features.map((f) => (
+        <div class="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-card)] p-6">
+          <div class="mb-3 text-3xl">{f.icon}</div>
+          <h3 class="mb-2 font-semibold">{f.title}</h3>
+          <p class="text-sm text-[var(--color-muted-foreground)]">{f.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- Featured Strategies (React Island) -->
+  <section class="mx-auto max-w-6xl px-4 py-16">
+    <h2 class="mb-8 text-center text-2xl font-bold">Featured Strategies</h2>
+    <FeaturedStrategies client:load />
+  </section>
+</BaseLayout>
