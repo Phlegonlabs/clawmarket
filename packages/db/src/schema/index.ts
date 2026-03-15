@@ -1,4 +1,5 @@
 export * from "./agent-identities.js";
+export * from "./bundles.js";
 export * from "./entitlements.js";
 export * from "./publishers.js";
 export * from "./purchases.js";
