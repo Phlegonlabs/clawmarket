@@ -22,6 +22,14 @@ vi.mock("../../services/purchase.js", () => ({
   completePurchase: vi.fn(),
 }));
 
+vi.mock("../../services/recommendation.js", () => ({
+  recommendStrategies: vi.fn(),
+}));
+
+vi.mock("../../services/backtest.js", () => ({
+  runStrategyBacktest: vi.fn(),
+}));
+
 import { publishStrategy } from "../../services/strategy.js";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

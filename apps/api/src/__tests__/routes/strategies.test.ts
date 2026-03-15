@@ -21,6 +21,14 @@ vi.mock("../../services/purchase.js", () => ({
   completePurchase: vi.fn(),
 }));
 
+vi.mock("../../services/recommendation.js", () => ({
+  recommendStrategies: vi.fn(),
+}));
+
+vi.mock("../../services/backtest.js", () => ({
+  runStrategyBacktest: vi.fn(),
+}));
+
 import { listStrategies, getStrategyBySlug, getUnlockedStrategy } from "../../services/strategy.js";
 import { checkEntitlement } from "../../services/purchase.js";
 
