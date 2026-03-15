@@ -2,21 +2,33 @@
 
 ## Environment Files
 
-- `.env.example` documents shared local variables
-- `.env.local` is the developer override file used during local runs
+- `.env.example`: shared example values
+- `.env.local`: developer override file for local runs
 
-## Web
+## Web Configuration
 
-- `PUBLIC_API_URL`: optional override for the API base URL consumed by the Astro frontend
+- `PUBLIC_API_URL`: optional override for the API base URL used by the Astro frontend
 
-## API / Workers
+If unset, the web app assumes `/api` relative to the current origin.
 
-- `apps/api/wrangler.jsonc` configures D1, Workers AI, and the backtest service binding
-- `ENVIRONMENT` and `PLATFORM_REVENUE_SHARE_BPS` are provided as non-secret defaults
-- `STRIPE_ENABLED` controls whether the placeholder Stripe on-ramp code path is active
+## API / Worker Configuration
 
-## State And Docs
+`apps/api/wrangler.jsonc` currently defines:
 
-- `.harness/state.json`: canonical execution snapshot
-- `docs/PROGRESS.md`: human-readable recovery index
-- `bun harness:sync-docs`: regenerates managed README/public/gitbook index files from harness state
+- D1 binding: `DB`
+- Workers AI binding: `AI`
+- Backtest service binding: `BACKTEST`
+- Non-secret vars: `ENVIRONMENT`, `PLATFORM_REVENUE_SHARE_BPS`
+
+## Optional / Partial Features
+
+- `STRIPE_ENABLED`: toggles the placeholder Stripe on-ramp path
+- ERC-8004 verification flows are present in the route surface but not fully wired to production-grade contract calls
+
+## Docs And State
+
+- `docs/PROGRESS.md`: current human-readable execution index
+- `docs/progress/`: generated recovery modules
+- `bun harness:sync-docs`: regenerates managed README/public index docs
+
+GitBook pages themselves are tracked Markdown files under `docs/gitbook/`.

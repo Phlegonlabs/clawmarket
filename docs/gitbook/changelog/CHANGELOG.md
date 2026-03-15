@@ -1,6 +1,14 @@
 # Changelog
 
-All notable documentation-facing changes are recorded here.
+All notable GitBook-facing documentation changes are recorded here.
+
+## [v1.5.0] — 2026-03-15
+
+### Changed
+
+- Expanded GitBook from a thin overview into a fuller repo guide
+- Added local development, implementation status, runtime surface, and route-family pages
+- Rewrote the introduction and navigation to reflect the current repository rather than scaffold-era assumptions
 
 ## [v1.4.0] — 2026-03-15
 

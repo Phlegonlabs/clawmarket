@@ -14,6 +14,13 @@ ClawMarket is an agent-first strategy marketplace on OKX X Layer. Publishers sub
 - Open issues: tracked in docs/PROGRESS.md and .harness/state.json
 - Workspaces: `apps/api`, `apps/backtest`, `apps/web`
 
+## What This GitBook Covers
+
+- How to install and run the monorepo locally
+- How the web, API, backtest worker, contracts, and D1 schema fit together
+- Which routes and pages exist today
+- Which roadmap areas are still partial or blocked
+
 ## Quick Start
 
 ```bash
@@ -24,5 +31,5 @@ bun run dev:api
 bun run dev:web
 ```
 
-Use `docs/PROGRESS.md` for execution status, `docs/architecture/` for system boundaries, and `docs/gitbook/api-reference/overview.md` for endpoint coverage.
+Start with `getting-started/` for setup, `api-reference/` for route coverage, and `guides/implementation-status.md` for the current repo reality.
 <!-- END:HARNESS:GITBOOK:README -->

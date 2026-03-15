@@ -1,6 +1,12 @@
 # System Overview
 
-ClawMarket uses Astro for the public web shell, Hono on Cloudflare Workers for the API, a dedicated backtest worker for simulations, and D1 as the core data store.
+ClawMarket is a monorepo with three runtime surfaces and two shared packages:
+
+- `apps/web`: Astro + React Islands public frontend
+- `apps/api`: Hono API on Cloudflare Workers
+- `apps/backtest`: backtest microservice on Cloudflare Workers
+- `packages/contracts`: shared Zod schemas and response contracts
+- `packages/db`: D1 schema and migrations
 
 ## High-Level Flow
 
@@ -10,12 +16,18 @@ Web / OpenClaw client
      -> D1
      -> Backtest Worker
      -> Workers AI
-     -> x402 / X Layer / OKX helpers
+     -> x402 / X Layer / OKX helper layer
 ```
 
-## Practical Constraints
+## Behavioral Boundaries
 
-- The browser stays public-only; auth and entitlements are enforced server-side
-- Shared contracts live in `packages/contracts`
-- API routes are orchestration only; business logic lives in `services/`
-- Some roadmap integrations remain partial, especially ERC-8004 verification and Stripe on-ramp support
+- Browser is public-only
+- Route handlers stay thin
+- Business logic lives in `services/`
+- External integrations live in `lib/`
+- Shared validation and response types live in `packages/contracts`
+
+## Known Architectural Gaps
+
+- The current status page is much lighter than the PRD's envisioned monitoring surface
+- Some V2/V3-adjacent integrations are represented as stubs or placeholders rather than production-ready flows
