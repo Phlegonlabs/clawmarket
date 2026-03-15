@@ -1,7 +1,7 @@
 # Progress — ClawMarket
 
 > **Last updated**: 2026-03-15
-> **Phase**: IMPLEMENTATION (M5 next)
+> **Phase**: IMPLEMENTATION (M6 next)
 
 ---
 
@@ -56,14 +56,14 @@
 | T018 | F018 | Status page (Astro + React Island) | DONE |
 
 ### M5: OpenClaw Skill + Polish
-- **Status**: NOT_STARTED
+- **Status**: DONE
 - **Features**: F016-F017
-- **Branch**: milestone/m5-polish
+- **Branch**: milestone/m5-polish (merged to main)
 
 | Task | Feature | Description | Status |
 |------|---------|-------------|--------|
-| T016 | F016 | OpenClaw skill manifest | NOT_STARTED |
-| T017 | F017 | LLM index files | NOT_STARTED |
+| T016 | F016 | OpenClaw skill manifest | DONE |
+| T017 | F017 | LLM index files | DONE |
 
 ### M6: Marketplace Intelligence
 - **Status**: NOT_STARTED
@@ -132,10 +132,10 @@
 | M2: Core API | 4 | 4 | 100% |
 | M3: AI Features | 2 | 2 | 100% |
 | M4: Frontend | 6 | 6 | 100% |
-| M5: Polish | 2 | 0 | 0% |
+| M5: Polish | 2 | 2 | 100% |
 | M6: Marketplace Intelligence | 4 | 0 | 0% |
 | M7: Leaderboard & Social Proof | 3 | 0 | 0% |
 | M8: x402 V2 Payment Evolution | 3 | 0 | 0% |
 | M9: Trust & Identity Layer | 3 | 0 | 0% |
 | M10: Strategy Bundles | 4 | 0 | 0% |
-| **Total** | **35** | **16** | **46%** |
+| **Total** | **35** | **18** | **51%** |

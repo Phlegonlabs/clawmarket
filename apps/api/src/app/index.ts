@@ -4,6 +4,8 @@ import type { Env } from "../types/bindings.js";
 import { backtestRoute } from "./routes/backtest.js";
 import { executionRoute } from "./routes/execution.js";
 import { healthRoute } from "./routes/health.js";
+import { llmIndexRoute } from "./routes/llm-index.js";
+import { openclawRoute } from "./routes/openclaw.js";
 import { publishRoute } from "./routes/publish.js";
 import { purchasesRoute } from "./routes/purchases.js";
 import { recommendRoute } from "./routes/recommend.js";
@@ -16,10 +18,14 @@ app.use("/*", cors());
 // Mount all route groups under /api
 app.route("/api", healthRoute);
 app.route("/api", strategiesRoute);
+app.route("/api", openclawRoute);
 app.route("/api", publishRoute);
 app.route("/api", purchasesRoute);
 app.route("/api", recommendRoute);
 app.route("/api", backtestRoute);
 app.route("/api", executionRoute);
+
+// Root-level LLM index files
+app.route("/", llmIndexRoute);
 
 export default app;
