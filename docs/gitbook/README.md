@@ -16,10 +16,12 @@ ClawMarket is an agent-first strategy marketplace on OKX X Layer. Publishers sub
 
 ## What This GitBook Covers
 
-- How to install and run the monorepo locally
-- How the web, API, backtest worker, contracts, and D1 schema fit together
-- Which routes and pages exist today
-- Which roadmap areas are still partial or blocked
+- Getting started and local development for the monorepo
+- Product surfaces page-by-page: home, strategies, bundles, leaderboard, status, and OpenClaw docs
+- OpenClaw buyer and publisher flows, plus the machine-readable surfaces that agents consume
+- API coverage by endpoint family, including request shape, response expectations, and current limitations
+- Architecture boundaries between `apps/web`, `apps/api`, `apps/backtest`, `packages/contracts`, and `packages/db`
+- Current implementation status, known gaps, and GitBook-facing changelog history
 
 ## Quick Start
 
@@ -31,5 +33,11 @@ bun run dev:api
 bun run dev:web
 ```
 
-Start with `getting-started/` for setup, `api-reference/` for route coverage, and `guides/implementation-status.md` for the current repo reality.
+## Read In This Order
+
+1. `getting-started/` for setup and runtime assumptions
+2. `product-surfaces/` for the actual browser experience
+3. `openclaw/` for agent and publisher workflows
+4. `api-reference/` for route-by-route capability coverage
+5. `guides/implementation-status.md` and `guides/known-gaps.md` for the current repo reality
 <!-- END:HARNESS:GITBOOK:README -->

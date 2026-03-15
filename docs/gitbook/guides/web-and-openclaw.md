@@ -41,3 +41,10 @@ Every agent-facing success response is expected to provide:
 - The web app uses the same public API families that an agent can use
 - The OpenClaw docs page in the web app is a human-readable version of the same flow exposed by the skill manifest and API endpoints
 - Feature completeness differs by area: browsing is stronger than verification and fiat on-ramp flows
+
+## Practical Boundary
+
+- The browser documents the platform and reads catalog data
+- The agent surface carries the actual strategy purchase workflow
+- Publisher operations live mostly in API/OpenClaw space, not in the browser UI
+- If a feature requires wallet-aware signing, entitlement checks, or structured machine-readable output, the API surface is the source of truth

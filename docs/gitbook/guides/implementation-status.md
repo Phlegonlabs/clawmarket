@@ -2,27 +2,50 @@
 
 This page is the fastest way to understand what is real in the repository today.
 
-## Implemented Surfaces
+## Snapshot
 
-- **Marketplace reads**: strategy list/detail/unlocked flow, bundle list/detail flow, leaderboard reads, publisher analytics, publisher reputation
-- **Agent flows**: OpenClaw skill manifest, recommendation, comparison, backtest, purchase intent, signing template, purchase completion
-- **Web experience**: home, strategy catalog/detail, bundle catalog/detail, leaderboard, OpenClaw docs, status page
-- **Infrastructure**: D1 schema, Workers AI binding, backtest service binding, llm index endpoints
+- Progress: `30/35` tasks marked done
+- Blocked items: `5`
+- Main workspaces: `apps/api`, `apps/backtest`, `apps/web`
+- Public browser pages: `8`
+- API route files: `15`
 
-## Partial Or Blocked Areas
+## What Is Implemented
 
-- **Workers AI model routing**: the model registry still maps use-cases to `@cf/meta/llama-3.1-8b-instruct`
-- **Leaderboard scheduling**: aggregation code exists, but no scheduled trigger is configured in Wrangler
-- **Stripe on-ramp**: code path is feature-flagged and returns disabled / placeholder behavior
-- **ERC-8004 verification**: helper and routes exist, but verification endpoints still return placeholder responses
-- **Workspace typecheck**: root workspace typecheck remains red because of a Drizzle version mismatch
+### Browser Surface
 
-## How To Read Progress
+- Home page with featured strategy cards
+- Strategy catalog and strategy detail pages
+- Bundle catalog and bundle detail pages
+- Leaderboard page
+- Status page
+- OpenClaw docs page
 
-- `docs/PROGRESS.md` is the human recovery index
-- `docs/progress/03-backlog.md` shows the current local task snapshot
-- The current harness snapshot marks `30/35` tasks done and `5` blocked
+### API Surface
 
-## Recommended Interpretation
+- Strategy read flow, unlocked entitlement gate, strategy publishing, and x402 purchase flow
+- Bundle list/detail and bundle publishing
+- Recommendation, comparison, and backtest endpoints
+- Execution helpers, leaderboard reads, analytics, credits, and reputation reads
+- OpenClaw skill files and `llms.txt` / `llm.txt`
 
-Treat ClawMarket as a mostly implemented repo with explicit unfinished edges, not as a pristine scaffold and not as a fully closed-out release candidate.
+### Shared Infrastructure
+
+- D1 schema and migrations in `packages/db`
+- Zod contracts in `packages/contracts`
+- Workers AI binding for recommendation, comparison, and analysis text
+- Separate backtest worker reached through a service binding
+
+## What Is Partial
+
+- Workers AI model registry exists, but every current use case still routes to `@cf/meta/llama-3.1-8b-instruct`
+- Leaderboard snapshot logic exists, but scheduled refresh wiring is not configured
+- Credits top-up routes exist, but Stripe on-ramp remains feature-flagged placeholder behavior
+- Publisher and agent verification routes exist, but currently return "coming soon" style ERC-8004 responses
+- Bundle commerce is less complete in the public route surface than single-strategy commerce
+
+## How To Read The Repo
+
+- Treat ClawMarket as a mostly implemented repo with explicit unfinished edges
+- Do not treat it as scaffold-only
+- Do not treat it as a release-complete production system

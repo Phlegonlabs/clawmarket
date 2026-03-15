@@ -10,5 +10,6 @@
 ## Practical Consequences
 
 - Public docs must distinguish clearly between browser flows and agent flows
-- Many docs need to describe partial implementations honestly because the ADR direction is ahead of some route-level completion
-- Route, service, and lib boundaries are an important part of the codebase, not just documentation theory
+- Route, service, and lib boundaries are a real implementation rule, not just documentation theory
+- The browser intentionally stops short of owning wallet purchase state; OpenClaw and API flows carry the commerce logic
+- Some ADR direction is ahead of route-level completion, so docs must call out partial implementations explicitly instead of flattening them into "done"

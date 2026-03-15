@@ -2,6 +2,15 @@
 
 All notable GitBook-facing documentation changes are recorded here.
 
+## [v1.6.0] — 2026-03-15
+
+### Changed
+
+- Expanded GitBook to page-level coverage for the browser surfaces: home, strategies, bundles, leaderboard, and status
+- Added dedicated OpenClaw pages for buyer flow, publisher flow, and machine-readable surfaces
+- Reorganized API docs into discovery, publishing, intelligence, ops, and machine-readable endpoint families
+- Added a page-to-API architecture map and a dedicated known-gaps page so partial implementations are documented explicitly
+
 ## [v1.5.0] — 2026-03-15
 
 ### Changed
