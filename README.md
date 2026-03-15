@@ -30,7 +30,7 @@ bun harness:audit
 This workspace is monorepo-first. Keep adding new surfaces inside the same repository as later milestones.
 Do not bootstrap product frameworks such as Next.js, Tauri, or provider SDK stacks during scaffold setup. Introduce them only inside milestone tasks.
 
-- `apps/`: current surfaces -> web
+- `apps/`: current surfaces -> api, backtest, web
 - `packages/shared/`: shared contracts and utilities
 - `packages/shared/api/`: agent-facing API wrappers
 <!-- END:HARNESS:README -->
