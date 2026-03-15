@@ -4,6 +4,7 @@ import type { Env } from "../types/bindings.js";
 import { analyticsRoute } from "./routes/analytics.js";
 import { backtestRoute } from "./routes/backtest.js";
 import { comparisonRoute } from "./routes/comparison.js";
+import { creditsRoute } from "./routes/credits.js";
 import { executionRoute } from "./routes/execution.js";
 import { healthRoute } from "./routes/health.js";
 import { leaderboardRoute } from "./routes/leaderboard.js";
@@ -28,6 +29,7 @@ app.route("/api", purchasesRoute);
 app.route("/api", recommendRoute);
 app.route("/api", backtestRoute);
 app.route("/api", comparisonRoute);
+app.route("/api", creditsRoute);
 app.route("/api", leaderboardRoute);
 app.route("/api", executionRoute);
 
