@@ -1,7 +1,7 @@
 # Progress — ClawMarket
 
 > **Last updated**: 2026-03-15
-> **Phase**: IMPLEMENTATION (M6 next)
+> **Phase**: COMPLETE (all milestones done)
 
 ---
 
@@ -111,16 +111,16 @@
 | T031 | V2-F004c | Publisher verification API + agent identity endpoint | DONE |
 
 ### M10: Strategy Bundles
-- **Status**: NOT_STARTED
+- **Status**: DONE
 - **Features**: V2-F005
-- **Branch**: milestone/m10-strategy-bundles
+- **Branch**: milestone/m10-strategy-bundles (merged to main)
 
 | Task | Feature | Description | Status |
 |------|---------|-------------|--------|
-| T032 | V2-F005a | Bundle schema + CRUD API | NOT_STARTED |
-| T033 | V2-F005b | Bundle x402 payment + multi-entitlement minting | NOT_STARTED |
-| T034 | V2-F005c | Portfolio-level combined backtest | NOT_STARTED |
-| T035 | V2-F005d | Bundle catalog + detail page (Astro + React Island) | NOT_STARTED |
+| T032 | V2-F005a | Bundle schema + CRUD API | DONE |
+| T033 | V2-F005b | Bundle x402 payment + multi-entitlement minting | DONE |
+| T034 | V2-F005c | Portfolio-level combined backtest | DONE |
+| T035 | V2-F005d | Bundle catalog + detail page (Astro + React Island) | DONE |
 
 ---
 
@@ -137,5 +137,5 @@
 | M7: Leaderboard & Social Proof | 3 | 3 | 100% |
 | M8: x402 V2 Payment Evolution | 3 | 3 | 100% |
 | M9: Trust & Identity Layer | 3 | 3 | 100% |
-| M10: Strategy Bundles | 4 | 0 | 0% |
-| **Total** | **35** | **31** | **89%** |
+| M10: Strategy Bundles | 4 | 4 | 100% |
+| **Total** | **35** | **35** | **100%** |
