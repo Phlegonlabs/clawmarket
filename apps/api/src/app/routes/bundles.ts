@@ -50,13 +50,13 @@ bundlesRoute.post("/openclaw/bundles/publish", async (c) => {
   });
 
   if (!result.ok) {
-    const statusMap: Record<string, number> = {
-      PUBLISHER_NOT_FOUND: 404,
-      SLUG_CONFLICT: 409,
-      STRATEGY_NOT_FOUND: 404,
-      INVALID_DISCOUNT: 400,
-    };
-    return c.json({ error: result.error, message: result.message }, statusMap[result.error] ?? 400);
+    if (result.error === "SLUG_CONFLICT") {
+      return c.json({ error: result.error, message: result.message }, 409);
+    }
+    if (result.error === "PUBLISHER_NOT_FOUND" || result.error === "STRATEGY_NOT_FOUND") {
+      return c.json({ error: result.error, message: result.message }, 404);
+    }
+    return c.json({ error: result.error, message: result.message }, 400);
   }
 
   return c.json(result.value, 201);
