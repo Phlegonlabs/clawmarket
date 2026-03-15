@@ -1,0 +1,31 @@
+---
+const navLinks = [
+  { href: "/strategies", label: "Strategies" },
+  { href: "/docs/openclaw", label: "OpenClaw" },
+  { href: "/status", label: "Status" },
+];
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="border-b border-[var(--color-border)] bg-[var(--color-background)]">
+  <div class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
+    <a href="/" class="flex items-center gap-2 text-lg font-bold no-underline hover:no-underline">
+      <span class="text-[var(--color-accent)]">Claw</span><span>Market</span>
+    </a>
+    <div class="flex items-center gap-6">
+      {navLinks.map((link) => (
+        <a
+          href={link.href}
+          class:list={[
+            "text-sm font-medium no-underline transition-colors hover:text-[var(--color-accent)]",
+            currentPath.startsWith(link.href)
+              ? "text-[var(--color-accent)]"
+              : "text-[var(--color-muted-foreground)]",
+          ]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </div>
+  </div>
+</nav>

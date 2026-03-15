@@ -1,0 +1,14 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import StrategyCatalog from "../../components/islands/StrategyCatalog";
+---
+
+<BaseLayout title="Strategies" description="Browse trading strategies on ClawMarket">
+  <section class="mx-auto max-w-6xl px-4 py-12">
+    <h1 class="mb-2 text-3xl font-bold">Strategy Catalog</h1>
+    <p class="mb-8 text-[var(--color-muted-foreground)]">
+      Discover expert-crafted trading strategies. Filter by family, search by name, and sort by price or date.
+    </p>
+    <StrategyCatalog client:load />
+  </section>
+</BaseLayout>
