@@ -25,6 +25,8 @@ clawmarket/
 │   │   │   │   └── ui/            ← shadcn/ui components (used by islands)
 │   │   │   ├── hooks/             ← React hooks (used by islands)
 │   │   │   ├── lib/               ← Shared utilities
+│   │   │   │                  ├── erc8004.ts          ← (M9) ERC-8004 Identity Registry wrapper
+│   │   │   │                  └── erc8004-reputation.ts ← (M9) ERC-8004 Reputation Registry wrapper
 │   │   │   └── styles/            ← Global CSS + Tailwind
 │   │   └── public/
 ├── packages/
@@ -41,6 +43,10 @@ clawmarket/
 │   ├── adr/
 │   ├── design/
 │   └── gitbook/
+│   │   │   │   ├── leaderboard.astro     ← (M7) Leaderboard page
+│   │   │   │   ├── bundles/              ← (M10) Bundle pages
+│   │   │   │   │   ├── index.astro
+│   │   │   │   │   └── [slug].astro
 ├── .harness/
 │   ├── types.ts
 │   ├── init.ts

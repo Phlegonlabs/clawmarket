@@ -172,6 +172,49 @@ No current competitor combines all three of these properties:
 
 ---
 
+## 5. 2026-03 Market Signal Update
+
+### 5A. ERC-8004: Decentralized Identity & Reputation
+
+- **ERC-8004 标准** 于 2026 Q1 进入 Final 阶段，定义链上身份注册（Identity Registry）与声誉注册（Reputation Registry）
+- **核心能力**: 去中心化 KYC 替代方案；agent 与 publisher 均可通过链上注册获取可验证身份
+- **跨链验证**: ERC-8004 支持跨链身份查询，但 X Layer 上的 bridge 合约仍需评估 gas 成本与延迟
+- **ClawMarket 影响**: 可取代传统 KYC，为 publisher 建立链上声誉系统，为 buyer 提供可信度信号
+
+### 5B. x402 V2 SDK
+
+- **x402 V2** 于 2025 年底发布，核心升级包括：multi-chain 默认支持、钱包会话管理（session-based payment）、credit balance 模型
+- **Credit balance**: 用户可预充值 credit，按需消费，减少每次交易的链上确认延迟
+- **Stripe 法币入口**: x402 Foundation 正在与 Stripe 合作开发法币 → credit 充值通道，预计 2026 Q2-Q3 可用
+- **ClawMarket 影响**: 支持 credit 模型可降低购买摩擦；Stripe 法币入口扩大非加密用户覆盖面
+
+### 5C. A2A Protocol & MCP Tool Server
+
+- **Google A2A (Agent-to-Agent) Protocol** 于 2025 年底发布，与 x402 集成，允许 agent 之间直接协商和支付
+- **MCP (Model Context Protocol)** 由 Anthropic 推动，定义 AI agent 与外部工具交互的标准接口
+- **市场趋势**: A2A + MCP 正在成为 agent 间通信的两大标准，但生态仍处早期整合阶段
+- **ClawMarket 决策**: V1-V2 暂不集成 MCP/A2A（用户决策），保留 V3+ 可能性
+
+### 5D. Agent Swarm 架构
+
+- **Multi-agent swarm** 是 2026 年 DeFAI 最前沿趋势：多个专业 agent（风控、技术分析、社交情绪）协同执行策略
+- **Virtuals Protocol ACP** 和 **ElizaOS multi-agent** 是主要开源框架
+- **ClawMarket 决策**: Strategy Swarm（组合多个策略为协同集群）列入 V3 远景，V2 先实现 Strategy Bundle（静态组合）
+
+### 5E. Cloudflare Workers AI 新模型
+
+- **GLM-4.7-Flash**: THUDM 发布的高效推理模型，已上线 Cloudflare Workers AI catalog，推理速度较 Llama-3.1-8B 提升 ~40%
+- **Nemotron-3 (NVIDIA)**: 适合结构化推理和策略分析的 reasoning 模型，Workers AI 支持中
+- **ClawMarket 影响**: 升级 Workers AI 模型配置可显著提升策略推荐和回测分析质量，T019 将实现可配置模型选择
+
+### 5F. NFT 策略授权趋势
+
+- **ERC-721 策略 NFT**: 多个项目正在探索将策略授权铸造为 NFT，实现链上所有权与二级市场交易
+- **ERC-2981 版税**: 标准化 NFT 版税分成，publisher 可在二级市场交易中持续获得收益
+- **ClawMarket 决策**: NFT 策略授权列入 V3 远景（V3-F002），V2 先完善 entitlement 模型
+
+---
+
 ## DeFi Market Size Context
 
 - **2026 DeFi market:** $47-238B depending on methodology (sources vary widely)

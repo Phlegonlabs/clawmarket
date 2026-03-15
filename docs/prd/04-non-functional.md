@@ -30,12 +30,15 @@
 ## 6. Out of Scope (V1)
 
 - [ ] 浏览器登录和个人中心
-- [ ] Publisher verification / KYC
+- [ ] ~~Publisher verification / KYC~~ → M9 ERC-8004 Identity Registry 替代传统 KYC
 - [ ] 平台内持仓和 PnL 追踪
 - [ ] 托管运行 publisher 任意代码
 - [ ] 自建 DEX 或交易引擎
 - [ ] 多语言 i18n (V1 英文为主)
 - [ ] 平台代理执行交易（full copy-trade）
+- [ ] MCP Tool Server（用户决策不纳入 V1-V2）
+- [ ] A2A Protocol 集成（用户决策不纳入 V1-V2）
+- [ ] Strategy Swarms（用户决策不纳入 V1-V2，V3 远景）
 
 ### V2 Roadmap（架构预留，V1 不实现）
 
@@ -57,6 +60,26 @@
 
 - 扩展 chainId 支持
 - Payment stablecoin 按 chainId 索引
+
+### V2 新增 Milestones 概述（M6-M10）
+
+> 详细规格见 `03-requirements.md`
+
+| Milestone | 名称 | 描述 | 依赖 |
+|-----------|------|------|------|
+| M6 | Marketplace Intelligence | Workers AI 模型升级 + 自动回测徽章 + 策略比较 + Publisher Analytics | M3 之后 |
+| M7 | Leaderboard & Social Proof | Leaderboard 数据聚合 + API + 页面 + 动态 Featured | M4/M5 之后 |
+| M8 | x402 V2 Payment Evolution | x402 V2 SDK + Credit Balance + Stripe 法币入口 | V2 阶段 |
+| M9 | Trust & Identity Layer | ERC-8004 Identity + Reputation + Publisher/Agent 验证 | V1 完成后 |
+| M10 | Strategy Bundles | Bundle CRUD + 支付 + 组合回测 + 目录页面 | V2 阶段 |
+
+### V3 远景概述
+
+| ID | Feature | 描述 |
+|----|---------|------|
+| V3-F002 | NFT 策略授权 | ERC-721 铸造 + 二级市场 + ERC-2981 版税 |
+| V3-F003 | Hosted Per-User Agent | Cloudflare Agents SDK Durable Object per buyer |
+| V3-F004 | Volatility Shield | 实时波动监控 → 自动对冲，x402 微支付计费 |
 
 ---
 
