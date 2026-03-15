@@ -18,7 +18,7 @@ export async function runTextGeneration(
   model = DEFAULT_MODEL,
 ): Promise<Result<string, string>> {
   try {
-    const result = (await ai.run(model, { messages })) as AiTextResponse;
+    const result = (await ai.run(model as keyof AiModels, { messages })) as AiTextResponse;
     const text = result.response?.trim();
     if (!text) return err("AI returned empty response");
     return ok(text);

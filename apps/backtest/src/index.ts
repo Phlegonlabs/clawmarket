@@ -75,7 +75,7 @@ Total Return: ${m.totalReturn}%, Max Drawdown: ${m.maxDrawdown}%, Sharpe: ${m.sh
 Focus on risk-adjusted performance and suitability. Be concise and objective.`;
 
   try {
-    const response = (await ai.run("@cf/meta/llama-3.1-8b-instruct", {
+    const response = (await ai.run("@cf/meta/llama-3.1-8b-instruct" as keyof AiModels, {
       messages: [
         { role: "system", content: "You are a quantitative trading analyst. Provide brief, objective analysis." },
         { role: "user", content: prompt },
