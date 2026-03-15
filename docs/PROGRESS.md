@@ -100,15 +100,15 @@
 | T028 | V2-F006c | Stripe fiat on-ramp (optional, non-blocking) | DONE |
 
 ### M9: Trust & Identity Layer
-- **Status**: NOT_STARTED
+- **Status**: DONE
 - **Features**: V2-F004
-- **Branch**: milestone/m9-trust-identity
+- **Branch**: milestone/m9-trust-identity (merged to main)
 
 | Task | Feature | Description | Status |
 |------|---------|-------------|--------|
-| T029 | V2-F004a | ERC-8004 Identity Registry integration | NOT_STARTED |
-| T030 | V2-F004b | ERC-8004 Reputation Registry + score aggregation | NOT_STARTED |
-| T031 | V2-F004c | Publisher verification API + agent identity endpoint | NOT_STARTED |
+| T029 | V2-F004a | ERC-8004 Identity Registry integration | DONE |
+| T030 | V2-F004b | ERC-8004 Reputation Registry + score aggregation | DONE |
+| T031 | V2-F004c | Publisher verification API + agent identity endpoint | DONE |
 
 ### M10: Strategy Bundles
 - **Status**: NOT_STARTED
@@ -136,6 +136,6 @@
 | M6: Marketplace Intelligence | 4 | 4 | 100% |
 | M7: Leaderboard & Social Proof | 3 | 3 | 100% |
 | M8: x402 V2 Payment Evolution | 3 | 3 | 100% |
-| M9: Trust & Identity Layer | 3 | 0 | 0% |
+| M9: Trust & Identity Layer | 3 | 3 | 100% |
 | M10: Strategy Bundles | 4 | 0 | 0% |
-| **Total** | **35** | **28** | **80%** |
+| **Total** | **35** | **31** | **89%** |
