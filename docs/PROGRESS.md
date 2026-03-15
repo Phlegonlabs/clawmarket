@@ -78,15 +78,15 @@
 | T022 | V1E-F003 | Publisher analytics API | DONE |
 
 ### M7: Leaderboard & Social Proof
-- **Status**: NOT_STARTED
+- **Status**: DONE
 - **Features**: V2-F008
-- **Branch**: milestone/m7-leaderboard
+- **Branch**: milestone/m7-leaderboard (merged to main)
 
 | Task | Feature | Description | Status |
 |------|---------|-------------|--------|
-| T023 | V2-F008a | Leaderboard data aggregation service + Cron Trigger | NOT_STARTED |
-| T024 | V2-F008b | Leaderboard API endpoints + trending algorithm | NOT_STARTED |
-| T025 | V2-F008c | Leaderboard page (Astro + React Island) + dynamic featured | NOT_STARTED |
+| T023 | V2-F008a | Leaderboard data aggregation service + Cron Trigger | DONE |
+| T024 | V2-F008b | Leaderboard API endpoints + trending algorithm | DONE |
+| T025 | V2-F008c | Leaderboard page (Astro + React Island) + dynamic featured | DONE |
 
 ### M8: x402 V2 Payment Evolution
 - **Status**: NOT_STARTED
@@ -134,8 +134,8 @@
 | M4: Frontend | 6 | 6 | 100% |
 | M5: Polish | 2 | 2 | 100% |
 | M6: Marketplace Intelligence | 4 | 4 | 100% |
-| M7: Leaderboard & Social Proof | 3 | 0 | 0% |
+| M7: Leaderboard & Social Proof | 3 | 3 | 100% |
 | M8: x402 V2 Payment Evolution | 3 | 0 | 0% |
 | M9: Trust & Identity Layer | 3 | 0 | 0% |
 | M10: Strategy Bundles | 4 | 0 | 0% |
-| **Total** | **35** | **22** | **63%** |
+| **Total** | **35** | **25** | **71%** |
