@@ -1,7 +1,9 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import type { Env } from "../types/bindings.js";
+import { analyticsRoute } from "./routes/analytics.js";
 import { backtestRoute } from "./routes/backtest.js";
+import { comparisonRoute } from "./routes/comparison.js";
 import { executionRoute } from "./routes/execution.js";
 import { healthRoute } from "./routes/health.js";
 import { llmIndexRoute } from "./routes/llm-index.js";
@@ -19,10 +21,12 @@ app.use("/*", cors());
 app.route("/api", healthRoute);
 app.route("/api", strategiesRoute);
 app.route("/api", openclawRoute);
+app.route("/api", analyticsRoute);
 app.route("/api", publishRoute);
 app.route("/api", purchasesRoute);
 app.route("/api", recommendRoute);
 app.route("/api", backtestRoute);
+app.route("/api", comparisonRoute);
 app.route("/api", executionRoute);
 
 // Root-level LLM index files
